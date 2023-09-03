@@ -1,3 +1,288 @@
+@import url("https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  /* width: 100dvw; */
+  height: 100dvh;
+  background-color: #212224;
+  font-family: "Hind", sans-serif;
+}
+
+::-webkit-scrollbar {
+  @apply w-2;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-primary_bg rounded-sm;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-heading rounded-sm;
+}
+
+h1,
+h2 {
+  @apply text-white;
+}
+
+input,
+select,
+option {
+  @apply rounded;
+}
+
+header {
+  @apply bg-primary_bg px-6 py-3 text-white;
+  @apply flex items-center justify-between;
+}
+
+header > nav,
+.login {
+  @apply flex items-center justify-center gap-4 text-lg;
+}
+
+.animated-link {
+  position: relative;
+  text-decoration: none;
+  overflow: hidden;
+}
+
+.animated-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: #fff;
+  transition: all 0.3s ease;
+}
+
+.animated-link:hover::after {
+  left: 0;
+  width: 100%;
+}
+
+.animated-link-black {
+  position: relative;
+  text-decoration: none;
+  overflow: hidden;
+}
+
+.animated-link-black::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: #111111;
+  transition: all 0.3s ease;
+}
+
+.animated-link-black:hover::after {
+  left: 0;
+  width: 100%;
+}
+
+.title_heading {
+  @apply font-bold text-4xl;
+}
+
+.section {
+  @apply h-full px-6 py-3;
+}
+
+.section-features,
+.section-testimonials,
+.section-contact {
+  @apply bg-[#0F5132];
+}
+
+footer {
+  @apply px-6 py-3 flex items-center justify-between text-white;
+}
+
+.form {
+  @apply bg-primary_bg p-10 text-white rounded shadow-lg;
+  @apply w-fit flex flex-col items-center justify-center gap-5;
+}
+
+.form > h1 {
+  @apply text-xl font-semibold text-center;
+}
+.form > form {
+  @apply flex flex-col items-center justify-center gap-5;
+}
+
+.form_group > label {
+  @apply block font-semibold;
+}
+
+.form_group > input {
+  @apply text-black font-normal px-2 py-1;
+}
+
+.btn-p {
+  @apply px-4 py-2 font-bold bg-[#066839] rounded;
+}
+
+#login {
+  @apply flex items-center justify-center;
+}
+
+/* Dashboard */
+
+main {
+  @apply w-full h-full;
+  display: grid;
+  grid-template-columns: 10% 90%;
+}
+
+.sidebar {
+  background-color: #0a5c36;
+  position: relative;
+  @apply flex flex-col items-center justify-between px-6 py-3 text-white;
+}
+
+.sidebar > nav {
+  @apply flex flex-col items-start justify-center gap-5;
+}
+
+.dropdown {
+  @apply relative;
+}
+
+.drop-links {
+  @apply absolute bg-white text-black font-semibold p-4 rounded shadow-lg;
+  @apply top-0 left-40 w-max;
+  @apply flex flex-col items-start justify-center gap-4;
+  @apply hidden;
+  opacity: 0; /* Initially transparent */
+  transition: opacity 0.3s ease, left 0.3s ease;
+}
+
+.side_btn {
+  @apply text-center text-xl font-semibold cursor-pointer;
+}
+
+.links {
+  @apply flex items-center justify-center gap-5;
+}
+
+.content {
+  @apply px-6 py-3 relative;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(4, auto);
+  @apply gap-4;
+}
+
+.filters {
+  @apply h-fit relative self-center;
+  @apply col-span-2 p-4 bg-white rounded;
+}
+
+.filters > h1 {
+  @apply text-black font-semibold text-center text-2xl mb-4;
+  @apply flex items-baseline justify-center gap-4;
+}
+
+.filters > form {
+  @apply absolute bg-white top-24 left-0 p-2 rounded shadow-lg border-2 border-green-900;
+  @apply flex items-center justify-center gap-5 flex-wrap;
+  @apply hidden;
+  opacity: 0; /* Initially transparent */
+  transition: opacity 0.3s ease, left 0.3s ease;
+}
+
+.filters > form > .form_group > input,
+select,
+option {
+  @apply w-32 h-8 bg-[#212224] text-white font-normal;
+}
+
+.btns {
+  @apply flex items-center justify-center gap-3;
+}
+
+.btn-s {
+  @apply bg-p_dark px-4 py-2 rounded font-semibold text-white;
+}
+
+.cards {
+  @apply col-span-4 flex items-center justify-evenly gap-5;
+}
+
+.card {
+  @apply w-52 h-24 text-center;
+  @apply p-6 bg-white rounded shadow-lg;
+}
+
+.card > h3 {
+  @apply text-lg font-normal;
+}
+
+.card > span {
+  @apply font-semibold;
+}
+
+.chart {
+  @apply col-span-3 row-span-1;
+}
+
+#myChart,
+#myChart2 {
+  @apply bg-white p-4 rounded;
+}
+
+.rendas {
+  background-image: url("/Frontend/vendor/images/wave-rendas.svg");
+  background-size: cover;
+  background-position: center;
+}
+
+.investimentos {
+  background-image: url("/Frontend/vendor/images/wave-investimentos.svg");
+  background-size: cover;
+  background-position: center;
+}
+
+.gastos {
+  background-image: url("/Frontend/vendor/images/wave-gastos.svg");
+  background-size: cover;
+  background-position: center;
+}
+
+.sem-track {
+  background-image: url("/Frontend/vendor/images/wave-sem-track.svg");
+  background-size: cover;
+  background-position: center;
+}
+
+.header {
+  @apply bg-white absolute top-0 left-0 w-full;
+  @apply px-6 py-3;
+}
+
+.tables {
+  @apply col-span-6 row-span-1 flex items-center justify-between gap-3;
+}
+
+.table {
+  @apply w-1/2 h-80 bg-white rounded shadow-lg overflow-auto;
+}
+
+.table > h2 {
+  @apply text-xl text-center font-semibold text-black mb-4;
+}
+
+.tables > .table > table {
+  @apply w-full bg-white rounded table-auto text-center;
+}
+
+.rendas_table {
+  @apply text-center;
+}

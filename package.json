@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "npx postcss ./tailwind.css -o ./base_static/global/css/style.css --watch",
-    "front": "npx postcss ./tailwind.css -o ./Frontend/static/css/style.css --watch"
+    "front": "npx postcss ./tailwind.css -o ./Frontend/vendor/css/style.css --watch"
   },
   "keywords": [],
   "author": "",
