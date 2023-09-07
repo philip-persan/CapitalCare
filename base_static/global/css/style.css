@@ -837,25 +837,25 @@ option{
 }
 
 .rendas {
-  background-image: url("/Frontend/vendor/images/wave-rendas.svg");
+  background-image: url("/static/global/images/wave-rendas.svg");
   background-size: cover;
   background-position: center;
 }
 
 .investimentos {
-  background-image: url("/Frontend/vendor/images/wave-investimentos.svg");
+  background-image: url("/static/global/images/wave-investimentos.svg");
   background-size: cover;
   background-position: center;
 }
 
 .gastos {
-  background-image: url("/Frontend/vendor/images/wave-gastos.svg");
+  background-image: url("/static/global/images/wave-gastos.svg");
   background-size: cover;
   background-position: center;
 }
 
 .sem-track {
-  background-image: url("/Frontend/vendor/images/wave-sem-track.svg");
+  background-image: url("/static/global/images/wave-sem-track.svg");
   background-size: cover;
   background-position: center;
 }

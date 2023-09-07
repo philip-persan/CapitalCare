@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'renda',
     'investimento',
     'gasto',
+    'dashboard',
 ]
 
 PASSWORD_HASHERS = [

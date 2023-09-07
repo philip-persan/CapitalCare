@@ -20,7 +20,7 @@
             <a class="animated-link" href="{% url 'home:register' %}">Criar Conta</a>
         </div>
         {% else %}
-        <a class="animated-link" href="#contact">Dashboard</a>
+        <a class="animated-link" href="{% url 'dashboard:index' %}">Dashboard</a>
         {% endif %}
     </nav>
 </header>
