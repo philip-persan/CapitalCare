@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    {% include 'global/partials/head.html' %}
+    <title>CapitalCare - {% block title %}{% endblock title %}</title>
+</head>
+
+<body>
+    {% include 'global/partials/header.html' %}
+    {% block content %}
+        
+    {% endblock content %}
+</body>
+
+</html>

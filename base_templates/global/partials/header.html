@@ -1,0 +1,26 @@
+<header class="header">
+    <h1 class="title_heading">CapitalCare</h1>
+    {% if messages %}
+        <div class="mensagens">
+            {% for message in messages %}
+                <div class="message {{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <nav class="navbar">
+        <a class="animated-link" href="{% url 'home:index' %}">Home</a>
+        <a class="animated-link" href="#features">Recursos</a>
+        <a class="animated-link" href="#pricing">Preços</a>
+        <a class="animated-link" href="#contact">Contato</a>
+        {% if not request.user.is_authenticated %}
+        <div class="login">
+            <a class="animated-link" href="{% url 'home:login' %}">Login</a>
+            <a class="animated-link" href="{% url 'home:register' %}">Criar Conta</a>
+        </div>
+        {% else %}
+        <a class="animated-link" href="#contact">Dashboard</a>
+        {% endif %}
+    </nav>
+</header>

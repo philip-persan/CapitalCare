@@ -264,7 +264,7 @@ option {
 }
 
 .header {
-  @apply bg-white absolute top-0 left-0 w-full;
+  @apply bg-primary_bg absolute top-0 left-0 w-full;
   @apply px-6 py-3;
 }
 

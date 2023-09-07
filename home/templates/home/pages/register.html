@@ -1,0 +1,24 @@
+{% extends 'global/home.html' %}
+{% block title %}Register{% endblock title %}
+{% block content %}
+<section id="login" class="section">
+    <div class="form">
+        <h1>Criar Conta</h1>
+        <form action="{% url 'home:register' %}" method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form_group">
+                    <label for="{{field.id_for_label}}">{{field.label}}:</label>
+                    {{ field }}
+                    {% if field.errors %}
+                        {% for error in field.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            {% endfor %}
+            <button class="btn-p" type="submit">Entrar</button>
+        </form>
+    </div>
+</section>
+{% endblock content %}
