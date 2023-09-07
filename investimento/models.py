@@ -3,7 +3,7 @@ from django.db import models
 from users.models import User
 
 
-class TipoRenda(models.Model):
+class TipoInvestimento(models.Model):
     owner = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
@@ -15,26 +15,26 @@ class TipoRenda(models.Model):
         unique=True,
         blank=False,
         null=False,
-        default='Salário'
+        default='Ações'
     )
 
     def __str__(self) -> str:
         return self.nome
 
     class Meta:
-        verbose_name = 'Tipo de Renda'
-        verbose_name_plural = 'Tipos de Renda'
+        verbose_name = 'Tipo de Investimento'
+        verbose_name_plural = 'Tipos de Investimento'
         ordering = ['owner', 'nome']
 
 
-class Renda(models.Model):
+class Investimento(models.Model):
     owner = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
         verbose_name='User'
     )
     tipo = models.ForeignKey(
-        TipoRenda,
+        TipoInvestimento,
         on_delete=models.SET_NULL,
         blank=False,
         null=True
@@ -50,11 +50,35 @@ class Renda(models.Model):
         verbose_name='Data',
         auto_created=False
     )
+    operacao = models.CharField(
+        verbose_name='Tipo de Operação',
+        max_length=50,
+        blank=False,
+        null=False,
+        choices=(
+            ('Compra', 'Compra'),
+            ('Venda', 'Venda')
+        ),
+        default='Compra'
+    )
+    ativo = models.CharField(
+        verbose_name='Ativo',
+        max_length=10,
+        blank=False,
+        null=True,
+    )
+    obs = models.CharField(
+        verbose_name='Observações',
+        max_length=255,
+        blank=True,
+        null=False,
+        default='Sem Obervações'
+    )
 
     def __str__(self) -> str:
         return f'{self.tipo} - {self.data.strftime("%d/%m/%Y")}'
 
     class Meta:
-        verbose_name = 'Renda'
-        verbose_name_plural = 'Rendas'
+        verbose_name = 'Investimento'
+        verbose_name_plural = 'Investimentos'
         ordering = ['owner', 'tipo']
