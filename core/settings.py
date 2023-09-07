@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'users',
     'home',
     'renda',
-    'investimento'
+    'investimento',
+    'gasto',
 ]
 
 PASSWORD_HASHERS = [
