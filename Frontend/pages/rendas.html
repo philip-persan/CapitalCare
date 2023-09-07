@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../vendor/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>CapitalCare - Rendas</title>
+</head>
+
+<body>
+    <main>
+        <aside class="sidebar">
+            <h2>Capital Care</h2>
+            <nav>
+                <a class="side_btn animated-link" href="">Dashboard</a>
+                <div class="dropdown">
+                    <button class="side_btn animated-link">Rendas</button>
+                    <div class="drop-links">
+                        <a class="animated-link-black" href="">Lista de Rendas</a>
+                        <a class="animated-link-black" href="">Adicionar Rendas</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="side_btn animated-link">Investimentos</button>
+                    <div class="drop-links">
+                        <a class="animated-link-black" href="">Lista de Investimentos</a>
+                        <a class="animated-link-black" href="">Adicionar Investimentos</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="side_btn animated-link">Gastos</button>
+                    <div class="drop-links">
+                        <a class="animated-link-black" href="">Lista de Gastos</a>
+                        <a class="animated-link-black" href="">Adicionar Gastos</a>
+                    </div>
+                </div>
+            </nav>
+            <div class="links">
+                <a href="">Perfil</a>
+                <a href="">Sair</a>
+            </div>
+        </aside>
+        <section class="item_section">
+            <div class="top_section">
+                <div class="filters">
+                    <h1>Filtros <button id="btn-filter"><i class="bi bi-filter-square-fill icon"></i></button></h1>
+
+                    <form id="form-filter" action="" method="get">
+                        <div class="form_group">
+                            <label for="tipo">Tipo:</label>
+                            <select name="tipo" id="tipo">
+                                <option value="rendas">Rendas</option>
+                                <option value="investimentos">Investimentos</option>
+                                <option value="gastos">Gastos</option>
+                            </select>
+                        </div>
+                        <div class="form_group">
+                            <label for="tipo">Categoria:</label>
+                            <select name="tipo" id="tipo">
+                                <option value="rendas">Cartão</option>
+                                <option value="investimentos">Uber</option>
+                                <option value="gastos">Ifood</option>
+                            </select>
+                        </div>
+                        <div class="form_group">
+                            <label for="valor">Valor Maior:</label>
+                            <input type="number" name="valor" id="valor">
+                        </div>
+                        <div class="form_group">
+                            <label for="valor">Valor Menor:</label>
+                            <input type="number" name="valor" id="valor">
+                        </div>
+                        <div class="form_group">
+                            <label for="valor">Mês:</label>
+                            <input type="number" name="valor" id="valor">
+                        </div>
+                        <div class="form_group">
+                            <label for="valor">Ano:</label>
+                            <input type="number" name="valor" id="valor">
+                        </div>
+                        <div class="btns">
+                            <button class="btn-s" type="submit">Filtrar</button>
+                            <a class="btn-s" href="">Limpar</a>
+                        </div>
+                    </form>
+                </div>
+                <div class="add">
+                    <h2>Adicionar Renda</h2>
+                    <form action="" method="post">
+                        <div class="form_group">
+                            <label for="data">Data:</label>
+                            <input type="date" name="data" id="data">
+                        </div>
+                        <div class="form_group">
+                            <label for="categoria">Categoria:</label>
+                            <select name="categoria" id="categoria">
+                                <option value="Salário">Salário</option>
+                            </select>
+                        </div>
+                        <div class="form_group">
+                            <label for="valor">Valor:</label>
+                            <input type="number" name="valor" id="valor">
+                        </div>
+                        <button class="btn-s" type="submit">Salvar</button>
+                    </form>
+                </div>
+            </div>
+            <div class="item_container">
+                <div class="chart">
+                    <canvas id="myChart2"></canvas>
+                </div>
+                <div class="table rendas_page">
+                    <h2>Rendas</h2>
+                    <table class="rendas_table">
+                        <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th>Categoria</th>
+                                <th>Valor</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>06/09/2023</td>
+                                <td>Salário</td>
+                                <td>R$ 2.077,34</td>
+                                <td class="actions">
+                                    <a href=""><i class="bi bi-x-circle-fill"></i></a>
+                                    <a href=""><i class="bi bi-pen-fill"></i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>06/09/2023</td>
+                                <td>Salário</td>
+                                <td>R$ 2.077,34</td>
+                                <td>
+                                    <a href=""><i class="bi bi-x-circle-fill"></i></a>
+                                    <a href=""><i class="bi bi-pen-fill"></i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>06/09/2023</td>
+                                <td>Salário</td>
+                                <td>R$ 2.077,34</td>
+                                <td>
+                                    <a href=""><i class="bi bi-x-circle-fill"></i></a>
+                                    <a href=""><i class="bi bi-pen-fill"></i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>06/09/2023</td>
+                                <td>Salário</td>
+                                <td>R$ 2.077,34</td>
+                                <td>
+                                    <a href=""><i class="bi bi-x-circle-fill"></i></a>
+                                    <a href=""><i class="bi bi-pen-fill"></i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>06/09/2023</td>
+                                <td>Salário</td>
+                                <td>R$ 2.077,34</td>
+                                <td>
+                                    <a href=""><i class="bi bi-x-circle-fill"></i></a>
+                                    <a href=""><i class="bi bi-pen-fill"></i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>06/09/2023</td>
+                                <td>Salário</td>
+                                <td>R$ 2.077,34</td>
+                                <td>
+                                    <a href=""><i class="bi bi-x-circle-fill"></i></a>
+                                    <a href=""><i class="bi bi-pen-fill"></i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>06/09/2023</td>
+                                <td>Salário</td>
+                                <td>R$ 2.077,34</td>
+                                <td>
+                                    <a href=""><i class="bi bi-x-circle-fill"></i></a>
+                                    <a href=""><i class="bi bi-pen-fill"></i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>06/09/2023</td>
+                                <td>Salário</td>
+                                <td>R$ 2.077,34</td>
+                                <td>
+                                    <a href=""><i class="bi bi-x-circle-fill"></i></a>
+                                    <a href=""><i class="bi bi-pen-fill"></i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>06/09/2023</td>
+                                <td>Salário</td>
+                                <td>R$ 2.077,34</td>
+                                <td>
+                                    <a href=""><i class="bi bi-x-circle-fill"></i></a>
+                                    <a href=""><i class="bi bi-pen-fill"></i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>06/09/2023</td>
+                                <td>Salário</td>
+                                <td>R$ 2.077,34</td>
+                                <td>
+                                    <a href=""><i class="bi bi-x-circle-fill"></i></a>
+                                    <a href=""><i class="bi bi-pen-fill"></i></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="../vendor/js/dropdowns.js"></script>
+    <script src="../vendor/js/chart_line.js"></script>
+    <script src="../vendor/js/chart_bar.js"></script>
+    <script src="../vendor/js/filter.js"></script>
+</body>
+
+</html>

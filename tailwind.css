@@ -162,6 +162,7 @@ main {
   @apply hidden;
   opacity: 0; /* Initially transparent */
   transition: opacity 0.3s ease, left 0.3s ease;
+  z-index: 100;
 }
 
 .side_btn {
@@ -272,7 +273,7 @@ option {
 }
 
 .table {
-  @apply w-1/2 h-80 bg-white rounded shadow-lg overflow-auto;
+  @apply w-full h-80 bg-white rounded shadow-lg overflow-auto;
 }
 
 .table > h2 {
@@ -284,5 +285,55 @@ option {
 }
 
 .rendas_table {
-  @apply text-center;
+  @apply text-center w-full h-full;
+}
+
+.rendas_page {
+  width: 100%;
+  height: 100%;
+  grid-column: 1/3;
+  grid-row: 2/4;
+}
+
+.add {
+  @apply bg-white p-4 rounded text-black;
+  grid-column: 1/3;
+  grid-row: 4/5;
+}
+
+.add > h2 {
+  @apply text-black text-lg font-semibold text-center;
+}
+
+.add > form {
+  @apply flex items-center justify-evenly flex-wrap gap-4;
+}
+
+.add > form > .form_group > input,
+select {
+  @apply bg-[#212224] w-40 text-white;
+}
+
+.item_section {
+  @apply px-6 py-3 flex flex-col items-center justify-start gap-5;
+}
+
+.top_section {
+  @apply w-full h-fit flex items-start justify-center gap-5;
+}
+
+.top_section > .filters {
+  @apply w-1/3;
+}
+
+.item_container {
+  @apply w-full h-1/2 flex items-start justify-evenly gap-5;
+}
+
+.item_container > .table {
+  @apply w-1/2;
+}
+
+.item_container > .chart {
+  @apply w-1/2 h-full;
 }
