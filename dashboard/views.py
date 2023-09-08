@@ -31,7 +31,11 @@ class DashboardView(LoginRequiredMixin, View):
         )
         total_gastos = gastos.aggregate(total=Sum('valor'))
 
-        sem_lancamento = total_rendas.get('total') - total_gastos.get('total')
+        try:
+            sem_lancamento = total_rendas.get(
+                'total') - total_gastos.get('total')
+        except TypeError:
+            sem_lancamento = total_rendas.get('total') - 0
 
         ctx = {
             'rendas': rendas,
