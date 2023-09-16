@@ -9,6 +9,8 @@ from renda.models import Renda
 
 
 class DashboardView(LoginRequiredMixin, View):
+    login_url = "home:login"
+
     def get(self, request):
         rendas = Renda.objects.filter(
             owner=request.user
@@ -33,7 +35,7 @@ class DashboardView(LoginRequiredMixin, View):
 
         try:
             sem_lancamento = total_rendas.get(
-                'total') - total_gastos.get('total')
+                'total') - total_gastos.get('total') - total_investimentos.get('total')  # noqa
         except TypeError:
             sem_lancamento = total_rendas.get('total') - 0
 

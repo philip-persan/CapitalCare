@@ -12,7 +12,7 @@ class TipoGasto(models.Model):
     nome = models.CharField(
         verbose_name='Nome',
         max_length=50,
-        unique=True,
+        unique=False,
         blank=False,
         null=False,
         default='Cartão'
@@ -36,7 +36,7 @@ class Categoria(models.Model):
     nome = models.CharField(
         verbose_name='Nome',
         max_length=50,
-        unique=True,
+        unique=False,
         blank=False,
         null=False,
         default='Cartão'

@@ -12,7 +12,7 @@ class TipoInvestimento(models.Model):
     nome = models.CharField(
         verbose_name='Nome',
         max_length=50,
-        unique=True,
+        unique=False,
         blank=False,
         null=False,
         default='Ações'
