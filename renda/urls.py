@@ -15,4 +15,9 @@ urlpatterns = [
         views.RendasAPIView.as_view(),
         name='api_list'
     ),
+    path(
+        'list/',
+        views.RendasListView.as_view(),
+        name='rendas_list'
+    ),
 ]

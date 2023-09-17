@@ -1,0 +1,73 @@
+{% extends 'global/base.html' %}
+{% load static %}
+{% block title %}Rendas{% endblock title %}
+{% block content %}
+<section>
+    <h1>Lista de Rendas</h1>
+    <div class="filters">
+        <h1>Filtros <button id="btn-filter"><i class="bi bi-filter-square-fill icon"></i></button></h1>
+
+        <form id="form-filter" action="{% url "rendas:rendas_list" %}" method="get">
+            {% csrf_token %}
+            {% for field in filters.form %}
+                <div class="form_group">
+                    <label for="{{field.id_for_label}}">{{field.label}}:</label>
+                    {{ field }}
+                </div>
+            {% endfor %}
+            <div class="btns">
+                <button class="btn-s" type="submit">Filtrar</button>
+                <a class="btn-s" href="{% url "rendas:rendas_list" %}">Limpar</a>
+            </div>
+        </form>
+    </div>
+    <div class="cards">
+        <div class="card">
+            <h3>Total</h3>
+            <span>R$ {{ valores.total }}</span>
+        </div>
+        <div class="card">
+            <h3>Média</h3>
+            <span>R$ {{ valores.avg|floatformat:2 }}</span>
+        </div>
+        <div class="card">
+            <h3>Menor</h3>
+            <span>R$ {{ valores.min }}</span>
+        </div>
+        <div class="card">
+            <h3>Maior</h3>
+            <span>R$ {{ valores.max }}</span>
+        </div>
+    </div>
+    <div class="">
+        <h2>Rendas</h2>
+        <table class="">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Tipo</th>
+                    <th>Valor</th>
+                    <th>Opções</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for rend in rendas %}
+                <tr>
+                    <td>{{ rend.data|date:"SHORT_DATE_FORMAT" }}</td>
+                    <td>{{ rend.tipo }}</td>
+                    <td>R$ {{ rend.valor }}</td>
+                    <td class="actions">
+                        <a href=""><i class="bi bi-x-circle-fill"></i></a>
+                        <a href=""><i class="bi bi-pen-fill"></i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock content %}
+{% block scripts %}
+<script src="{% static 'global/js/dropdowns.js' %}"></script>
+<script src="{% static 'global/js/filter.js' %}"></script>
+{% endblock scripts %}
