@@ -138,6 +138,13 @@ USE_THOUSAND_SEPARATOR = True
 
 THOUSAND_SEPARATOR = '.'
 
+DATE_FORMAT = 'd/m/Y'
+
+DATE_INPUT_FORMATS = [
+    '%d/%m/%Y',
+    '%d-%m-%Y',
+]
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/

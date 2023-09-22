@@ -22,6 +22,22 @@ body {
   @apply bg-heading rounded-sm;
 }
 
+.success {
+  @apply bg-green-500 rounded text-white px-4 py-2;
+}
+
+.error {
+  @apply bg-red-500 rounded text-white px-4 py-2;
+}
+
+.debug {
+  @apply bg-yellow-500 rounded text-white px-4 py-2;
+}
+
+.info {
+  @apply bg-blue-500 rounded text-white px-4 py-2;
+}
+
 h1,
 h2 {
   @apply text-white;

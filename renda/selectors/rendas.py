@@ -2,6 +2,7 @@ from typing import Dict
 
 from django.db.models import Avg, Max, Min, Sum
 from django.db.models.query import QuerySet
+from django.shortcuts import get_object_or_404
 
 from ..models import Renda
 
@@ -13,6 +14,11 @@ def get_rendas_by_user(request) -> QuerySet[Renda]:
         'owner', 'tipo'
     )
     return rendas
+
+
+def get_rendas_by_id(request, id: int) -> Renda:
+    renda = get_object_or_404(Renda, id=id, owner=request.user)
+    return renda
 
 
 def get_aggregations_rendas(rendas: QuerySet[Renda]) -> Dict:

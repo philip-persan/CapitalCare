@@ -9,16 +9,6 @@ class RendasFilter(df.FilterSet):
         lookup_expr='nome__icontains',
         label='Tipo',
     )
-    mes = df.DateFilter(
-        field_name='data',
-        lookup_expr='month',
-        label='Mês'
-    )
-    ano = df.DateFilter(
-        field_name='data',
-        lookup_expr='year',
-        label='Ano'
-    )
     data_maior = df.DateFilter(
         field_name='data',
         lookup_expr='gte',
@@ -37,12 +27,12 @@ class RendasFilter(df.FilterSet):
     valor_menor = df.NumberFilter(
         field_name='valor',
         lookup_expr='lte',
-        label='Valor manor que'
+        label='Valor menor que'
     )
 
     class Meta:
         model = Renda
         fields = [
-            'tipo', 'mes', 'ano', 'data_maior', 'data_menor',
+            'tipo', 'data_maior', 'data_menor',
             'valor_maior', 'valor_menor'
         ]

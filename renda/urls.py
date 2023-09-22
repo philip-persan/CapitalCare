@@ -20,4 +20,19 @@ urlpatterns = [
         views.RendasListView.as_view(),
         name='rendas_list'
     ),
+    path(
+        'create/',
+        views.RendasCreateView.as_view(),
+        name='rendas_create'
+    ),
+    path(
+        'delete/<int:id>/',
+        views.RendasDeleteView.as_view(),
+        name='rendas_delete'
+    ),
+    path(
+        'update/<int:id>/',
+        views.RendasUpdateView.as_view(),
+        name='rendas_update'
+    ),
 ]

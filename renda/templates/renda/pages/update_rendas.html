@@ -1,0 +1,30 @@
+{% extends 'global/base.html' %}
+{% load static %}
+{% block title %}Criar Renda{% endblock title %}
+{% block content %}
+<section>
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <span class="{{ message.tags }}">{{ message }}</span>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <div class="form_renda">
+        <h1>Atualizar Renda</h1>
+        <form action="{% url "rendas:rendas_update" renda.id %}" method="post">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="form_group">
+                <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
+                {{ field }}
+            </div>
+            {% endfor %}
+            <button class="btn-s" type="submit">Salvar</button>
+        </form>
+    </div>
+</section>
+{% endblock content %}
+{% block scripts %}
+<script src="{% static 'global/js/dropdowns.js' %}"></script>
+{% endblock scripts %}
