@@ -134,25 +134,26 @@ class GastosFake:
         user = User.objects.get(username=self.username)
         tipo_exist = TipoGasto.objects.filter(
             owner=user,
-            nome='Contas'
+            nome='Debito Automático'
         ).exists()
         categoria_exist = Categoria.objects.filter(
             owner=user,
-            nome='Conta de Luz'
+            nome='Contas Básicas'
         ).exists()
 
         if not tipo_exist:
-            tipo = TipoGasto.objects.create(owner=user, nome='Contas')
+            tipo = TipoGasto.objects.create(
+                owner=user, nome='Debito Automático')
         else:
-            tipo = TipoGasto.objects.get(owner=user, nome='Contas')
+            tipo = TipoGasto.objects.get(owner=user, nome='Debito Automático')
 
         if not categoria_exist:
             categoria = Categoria.objects.create(
-                owner=user, nome='Conta de Luz'
+                owner=user, nome='Contas Básicas'
             )
         else:
             categoria = Categoria.objects.get(
-                owner=user, nome='Conta de Luz'
+                owner=user, nome='Contas Básicas'
             )
 
         mes = 1
@@ -161,6 +162,7 @@ class GastosFake:
             data = f'{ano}-{mes}-{randint(1, 28)}'
             Gasto.objects.create(
                 owner=user,
+                descricao='Conta de Luz',
                 tipo=tipo,
                 categoria=categoria,
                 valor=valor,
@@ -172,25 +174,26 @@ class GastosFake:
         user = User.objects.get(username=self.username)
         tipo_exist = TipoGasto.objects.filter(
             owner=user,
-            nome='Contas'
+            nome='Debito Automático'
         ).exists()
         categoria_exist = Categoria.objects.filter(
             owner=user,
-            nome='Conta de Água'
+            nome='Contas Básicas'
         ).exists()
 
         if not tipo_exist:
-            tipo = TipoGasto.objects.create(owner=user, nome='Contas')
+            tipo = TipoGasto.objects.create(
+                owner=user, nome='Debito Automático')
         else:
-            tipo = TipoGasto.objects.get(owner=user, nome='Contas')
+            tipo = TipoGasto.objects.get(owner=user, nome='Debito Automático')
 
         if not categoria_exist:
             categoria = Categoria.objects.create(
-                owner=user, nome='Conta de Água'
+                owner=user, nome='Contas Básicas'
             )
         else:
             categoria = Categoria.objects.get(
-                owner=user, nome='Conta de Água'
+                owner=user, nome='Contas Básicas'
             )
 
         mes = 1
@@ -199,6 +202,7 @@ class GastosFake:
             data = f'{ano}-{mes}-{randint(1, 28)}'
             Gasto.objects.create(
                 owner=user,
+                descricao='Conta de Água',
                 tipo=tipo,
                 categoria=categoria,
                 valor=valor,
@@ -210,25 +214,26 @@ class GastosFake:
         user = User.objects.get(username=self.username)
         tipo_exist = TipoGasto.objects.filter(
             owner=user,
-            nome='Contas'
+            nome='Debito Automático'
         ).exists()
         categoria_exist = Categoria.objects.filter(
             owner=user,
-            nome='Aluguel'
+            nome='Contas Básicas'
         ).exists()
 
         if not tipo_exist:
-            tipo = TipoGasto.objects.create(owner=user, nome='Contas')
+            tipo = TipoGasto.objects.create(
+                owner=user, nome='Debito Automático')
         else:
-            tipo = TipoGasto.objects.get(owner=user, nome='Contas')
+            tipo = TipoGasto.objects.get(owner=user, nome='Debito Automático')
 
         if not categoria_exist:
             categoria = Categoria.objects.create(
-                owner=user, nome='Aluguel'
+                owner=user, nome='Contas Básicas'
             )
         else:
             categoria = Categoria.objects.get(
-                owner=user, nome='Aluguel'
+                owner=user, nome='Contas Básicas'
             )
         mes = 1
         for i in range(12):
@@ -236,6 +241,7 @@ class GastosFake:
             data = f'{ano}-{mes}-{randint(1, 28)}'
             Gasto.objects.create(
                 owner=user,
+                descricao='Aluguel',
                 tipo=tipo,
                 categoria=categoria,
                 valor=valor,
@@ -245,6 +251,7 @@ class GastosFake:
 
     def create_any(
         self,
+        descricao: str,
         tipo_nome: str,
         categoria_nome: str,
         min_valor: int,
@@ -284,6 +291,7 @@ class GastosFake:
                 data = f'{ano}-{mes}-{randint(1, 28)}'
                 Gasto.objects.create(
                     owner=user,
+                    descricao=descricao,
                     tipo=tipo,
                     categoria=categoria,
                     valor=valor,
@@ -296,6 +304,7 @@ class GastosFake:
                 data = f'{ano}-{randint(1,12)}-{randint(1, 28)}'
                 Gasto.objects.create(
                     owner=user,
+                    descricao=descricao,
                     tipo=tipo,
                     categoria=categoria,
                     valor=valor,

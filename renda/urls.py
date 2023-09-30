@@ -6,12 +6,12 @@ app_name = 'rendas'
 
 urlpatterns = [
     path(
-        'api/tipo_rendas_list/',
+        'api/v1/tipos_de_rendas/',
         views.TipoRendasAPIView.as_view(),
         name='api_list_tipos'
     ),
     path(
-        'api/rendas_list/',
+        'api/v1/rendas/',
         views.RendasAPIView.as_view(),
         name='api_list'
     ),

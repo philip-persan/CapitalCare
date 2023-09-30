@@ -1,0 +1,59 @@
+{% extends 'global/base.html' %}
+{% load static %}
+{% block title %}Criar Gasto{% endblock title %}
+{% block content %}
+<section>
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <span class="{{ message.tags }}">{{ message }}</span>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <div class="form_gastos">
+        <h1>Criar Gasto</h1>
+        <form action="{% url "gastos:gasto_create" %}" method="post">
+            {% csrf_token %}
+            {% for field in form_gastos %}
+            <div class="form_group">
+                <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
+                {{ field }}
+                <span>{{ field.help_text }}</span>
+            </div>
+            {% endfor %}
+            <button class="btn-s" type="submit">Criar</button>
+        </form>
+    </div>
+    <div class="form_tipo_gastos">
+        <h1>Criar Tipo de Gasto</h1>
+        <form action="{% url "gastos:gasto_create" %}" method="post">
+            {% csrf_token %}
+            {% for field in form_tipo %}
+            <div class="form_group">
+                <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
+                {{ field }}
+                <span>{{ field.help_text }}</span>
+            </div>
+            {% endfor %}
+            <button class="btn-s" type="submit">Criar</button>
+        </form>
+    </div>
+    <div class="form_tipo_gastos">
+        <h1>Criar Categoria de Gasto</h1>
+        <form action="{% url "gastos:gasto_create" %}" method="post">
+            {% csrf_token %}
+            {% for field in form_categoria %}
+            <div class="form_group">
+                <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
+                {{ field }}
+                <span>{{ field.help_text }}</span>
+            </div>
+            {% endfor %}
+            <button class="btn-s" type="submit">Criar</button>
+        </form>
+    </div>
+</section>
+{% endblock content %}
+{% block scripts %}
+<script src="{% static 'global/js/dropdowns.js' %}"></script>
+{% endblock scripts %}

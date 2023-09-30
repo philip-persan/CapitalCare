@@ -12,10 +12,10 @@ const plugin = {
   },
 };
 
-const url_rendas = "http://127.0.0.1:8000/rendas/api/rendas_list/";
+const url_rendas = "http://127.0.0.1:8000/rendas/api/v1/rendas/";
 const url_investimentos =
-  "http://127.0.0.1:8000/investimentos/api/investimentos_list/";
-const url_gastos = "http://127.0.0.1:8000/gastos/api/gastos_list/";
+  "http://127.0.0.1:8000/investimentos/api/v1/investimentos/";
+const url_gastos = "http://127.0.0.1:8000/gastos/api/v1/gastos/";
 
 const fetchOptions = {
   method: "GET",

@@ -12,7 +12,7 @@ const plugin2 = {
   },
 };
 
-const url = "http://127.0.0.1:8000/rendas/api/rendas_list/";
+const url = "http://127.0.0.1:8000/rendas/api/v1/rendas/";
 
 fetch(url, {
   method: "GET",

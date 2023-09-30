@@ -1,9 +1,9 @@
 {% extends 'global/base.html' %}
 {% load static %}
-{% block title %}Rendas{% endblock title %}
+{% block title %}Gastos{% endblock title %}
 {% block content %}
 <section>
-    <h1>Lista de Rendas</h1>
+    <h1>Lista de Gastos</h1>
     {% if messages %}
         <div class="messages">
             {% for message in messages %}
@@ -47,25 +47,29 @@
         </div>
     </div>
     <div class="">
-        <h2>Rendas</h2>
+        <h2>Gastos</h2>
         <table class="">
             <thead>
                 <tr>
                     <th>Data</th>
+                    <th>Descrição</th>
                     <th>Tipo</th>
+                    <th>Categoria</th>
                     <th>Valor</th>
                     <th>Opções</th>
                 </tr>
             </thead>
             <tbody>
-                {% for rend in page_obj %}
+                {% for gasto in page_obj %}
                 <tr>
-                    <td>{{ rend.data|date:"SHORT_DATE_FORMAT" }}</td>
-                    <td>{{ rend.tipo }}</td>
-                    <td>R$ {{ rend.valor }}</td>
+                    <td>{{ gasto.data|date:"SHORT_DATE_FORMAT" }}</td>
+                    <td>{{ gasto.descricao }}</td>
+                    <td>{{ gasto.tipo }}</td>
+                    <td>{{ gasto.categoria }}</td>
+                    <td>R$ {{ gasto.valor }}</td>
                     <td class="actions">
-                        <a href="{% url "rendas:rendas_delete" rend.id %}"><i class="bi bi-x-circle-fill"></i></a>
-                        <a href="{% url "rendas:rendas_update" rend.id %}"><i class="bi bi-pen-fill"></i></a>
+                        <a href=""><i class="bi bi-x-circle-fill"></i></a>
+                        <a href=""><i class="bi bi-pen-fill"></i></a>
                     </td>
                 </tr>
                 {% endfor %}

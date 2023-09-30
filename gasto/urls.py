@@ -6,18 +6,28 @@ app_name = 'gastos'
 
 urlpatterns = [
     path(
-        'api/tipos_gastos_list/',
+        'api/v1/tipos_de_gastos/',
         views.TipoGastoAPIView.as_view(),
-        name='tipo_list'
+        name='api_tipo_list'
     ),
     path(
-        'api/categorias_gastos_list/',
+        'api/v1/categorias_de_gastos/',
         views.CategoriaAPIView.as_view(),
-        name='categoria_list'
+        name='api_categoria_list'
     ),
     path(
-        'api/gastos_list/',
+        'api/v1/gastos/',
         views.GastoAPIView.as_view(),
-        name='gasto_list'
+        name='api_gasto_list'
     ),
+    path(
+        'create/',
+        views.GastoCreateView.as_view(),
+        name='gasto_create'
+    ),
+    path(
+        'list/',
+        views.GastoListView.as_view(),
+        name='gasto_list'
+    )
 ]

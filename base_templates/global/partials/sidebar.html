@@ -19,8 +19,8 @@
         <div class="dropdown">
             <button class="side_btn animated-link">Gastos</button>
             <div class="drop-links">
-                <a class="animated-link-black" href="">Lista de Gastos</a>
-                <a class="animated-link-black" href="">Adicionar Gastos</a>
+                <a class="animated-link-black" href="{% url "gastos:gasto_list" %}">Lista de Gastos</a>
+                <a class="animated-link-black" href="{% url "gastos:gasto_create" %}">Adicionar Gastos</a>
             </div>
         </div>
     </nav>

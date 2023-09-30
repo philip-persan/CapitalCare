@@ -6,12 +6,12 @@ app_name = 'investimentos'
 
 urlpatterns = [
     path(
-        'api/tipo_investimentos_list/',
+        'api/v1/tipos_de_investimentos/',
         views.TipoInvestimentosAPIView.as_view(),
         name='api_tipo_invest'
     ),
     path(
-        'api/investimentos_list/',
+        'api/v1/investimentos/',
         views.InvestimentosAPIView.as_view(),
         name='api_investimentos'
     ),

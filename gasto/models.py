@@ -9,22 +9,22 @@ class TipoGasto(models.Model):
         on_delete=models.CASCADE,
         verbose_name='User'
     )
-    nome = models.CharField(
+    nome_tipo = models.CharField(
         verbose_name='Nome',
         max_length=50,
         unique=False,
         blank=False,
         null=False,
-        default='Cartão'
+        default='Cartão de Crédito'
     )
 
     def __str__(self) -> str:
-        return self.nome
+        return self.nome_tipo
 
     class Meta:
         verbose_name = 'Tipo de Gastos'
         verbose_name_plural = 'Tipos de Gastos'
-        ordering = ['owner', 'nome']
+        ordering = ['owner', 'nome_tipo']
 
 
 class Categoria(models.Model):
@@ -33,22 +33,22 @@ class Categoria(models.Model):
         on_delete=models.CASCADE,
         verbose_name='User'
     )
-    nome = models.CharField(
+    nome_categoria = models.CharField(
         verbose_name='Nome',
         max_length=50,
         unique=False,
         blank=False,
         null=False,
-        default='Cartão'
+        default='Uber'
     )
 
     def __str__(self) -> str:
-        return self.nome
+        return self.nome_categoria
 
     class Meta:
         verbose_name = 'Categoria'
         verbose_name_plural = 'Categorias'
-        ordering = ['owner', 'nome']
+        ordering = ['owner', 'nome_categoria']
 
 
 class Gasto(models.Model):
@@ -56,6 +56,12 @@ class Gasto(models.Model):
         User,
         on_delete=models.CASCADE,
         verbose_name='User'
+    )
+    descricao = models.CharField(
+        verbose_name='Descrição',
+        max_length=50,
+        blank=False,
+        null=True
     )
     tipo = models.ForeignKey(
         TipoGasto,
@@ -95,4 +101,4 @@ class Gasto(models.Model):
     class Meta:
         verbose_name = 'Gasto'
         verbose_name_plural = 'Gastos'
-        ordering = ['owner', 'tipo', 'categoria']
+        ordering = ['-data', 'tipo', 'categoria']

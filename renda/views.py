@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator
 from django.shortcuts import redirect, render
 from django.views import View
 from rest_framework.generics import ListAPIView
@@ -37,9 +38,15 @@ class RendasListView(View):
         rendas = get_rendas_by_user(request)
         filter = RendasFilter(request.GET, queryset=rendas)
         rendas = filter.qs
+
+        paginator = Paginator(rendas, 15)
+        page_number = request.GET.get("page")
+        page_obj = paginator.get_page(page_number)
+
         valores = get_aggregations_rendas(rendas)
+
         ctx = {
-            'rendas': rendas,
+            'page_obj': page_obj,
             'valores': valores,
             'filters': filter
         }
@@ -58,8 +65,7 @@ class RendasCreateView(View):
         return render(request, 'renda/pages/create_rendas.html', ctx)
 
     def post(self, request):
-        POST = request
-        rendas_create(POST)
+        rendas_create(request)
         return redirect('rendas:rendas_create')
 
 
