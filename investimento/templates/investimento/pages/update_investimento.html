@@ -1,0 +1,38 @@
+{% extends 'global/base.html' %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static "css/investimentos.css" %}">
+{% endblock style %}
+{% block title %}Invesitmentos{% endblock title %}
+{% block content %}
+<section>
+    <h1>Editar de Invesitmento</h1>
+    <h1>{{ investimento }}</h1>
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <span class="{{ message.tags }}">{{ message }}</span>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <div class="edit_investimentos">
+        <h2 class="table_title">Editar Investimento</h2>
+        <form action="{% url "investimentos:investimentos_update" investimento.id %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="id" value="{{ request.user }}">
+            {% for field in form %}
+                <div class="form_group">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
+                    {{ field }}
+                </div>
+            {% endfor %}
+            <button type="submit">Salvar</button>
+            <a href="{% url "investimentos:investimentos_list" %}">Voltar</a>
+        </form>
+    </div>
+</section>
+{% endblock content %}
+{% block scripts %}
+<script src="{% static 'global/js/dropdowns.js' %}"></script>
+<script src="{% static 'global/js/filter.js' %}"></script>
+{% endblock scripts %}

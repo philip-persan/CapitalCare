@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.list_investimentos {
+  width: 50%;
+  height: fit-content;
+  background-color: white;
+  color: black;
+  text-align: center;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.table_title {
+  color: black;
+  font-size: 1.25rem /* 20px */;
+  line-height: 1.75rem /* 28px */;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.list_investimentos > table {
+  width: 100%;
+}
+
+.annotations {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}

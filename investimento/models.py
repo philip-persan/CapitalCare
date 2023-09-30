@@ -81,4 +81,4 @@ class Investimento(models.Model):
     class Meta:
         verbose_name = 'Investimento'
         verbose_name_plural = 'Investimentos'
-        ordering = ['owner', 'tipo']
+        ordering = ['owner', '-data', 'tipo']

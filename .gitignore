@@ -4,7 +4,7 @@ __pycache__/
 *$py.class
 media
 node_modules
-static/
+
 gunicorn-error-log
 .mypy_cache
 

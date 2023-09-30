@@ -1,0 +1,153 @@
+{% extends 'global/base.html' %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static "css/investimentos.css" %}">
+{% endblock style %}
+{% block title %}Invesitmentos{% endblock title %}
+{% block content %}
+<section>
+    <h1>Lista de Invesitmentos</h1>
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <span class="{{ message.tags }}">{{ message }}</span>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <div class="filters">
+        <h1>Filtros<button id="btn-filter"><i class="bi bi-filter-square-fill icon"></i></button></h1>
+
+        <form id="form-filter" action="{% url "rendas:rendas_list" %}" method="get">
+            {% csrf_token %}
+            {% for field in filters.form %}
+                <div class="form_group">
+                    <label for="{{field.id_for_label}}">{{field.label}}:</label>
+                    {{ field }}
+                </div>
+            {% endfor %}
+            <div class="btns">
+                <button class="btn-s" type="submit">Filtrar</button>
+                <a class="btn-s" href="{% url "rendas:rendas_list" %}">Limpar</a>
+            </div>
+        </form>
+    </div>
+    <div class="cards">
+        <div class="card">
+            <h3>Total</h3>
+            <span>R$ {{ valores.total }}</span>
+        </div>
+        <div class="card">
+            <h3>Média</h3>
+            <span>R$ {{ valores.avg|floatformat:2 }}</span>
+        </div>
+        <div class="card">
+            <h3>Menor</h3>
+            <span>R$ {{ valores.min }}</span>
+        </div>
+        <div class="card">
+            <h3>Maior</h3>
+            <span>R$ {{ valores.max }}</span>
+        </div>
+    </div>
+    <div class="tables">
+        <div class="list_investimentos">
+            <h2 class="table_title">Investimentos</h2>
+            <table class="">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Tipo</th>
+                        <th>Valor</th>
+                        <th>Operação</th>
+                        <th>Ativo</th>
+                        <th>Observação</th>
+                        <th>Opções</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for invest in page_obj %}
+                    <tr>
+                        <td>{{ invest.data|date:"SHORT_DATE_FORMAT" }}</td>
+                        <td>{{ invest.tipo }}</td>
+                        <td>R$ {{ invest.valor }}</td>
+                        <td>{{ invest.operacao }}</td>
+                        <td>{{ invest.ativo }}</td>
+                        <td>{{ invest.obs }}</td>
+                        <td class="actions">
+                            <a href=""><i class="bi bi-x-circle-fill"></i></a>
+                            <a href="{% url "investimentos:investimentos_update" invest.id %}"><i class="bi bi-pen-fill"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% include "global/partials/pagination.html" %}
+        </div>
+        <div class="annotations">
+            <div class="list_investimentos">
+                <h2 class="table_title">Investimentos por Tipo</h2>
+                <table class="">
+                    <thead>
+                        <tr>
+                            <th>Tipo</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for tipo in annotations.por_tipo %}
+                        <tr>
+                            <td>{{ tipo.tipo__nome }}</td>
+                            <td>R$ {{ tipo.total_por_tipo }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="list_investimentos">
+                <h2 class="table_title">Investimentos por Ativo</h2>
+                <table class="">
+                    <thead>
+                        <tr>
+                            <th>Ativo</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for ativo in annotations.por_ativo %}
+                        <tr>
+                            <td>{{ ativo.ativo }}</td>
+                            <td>R$ {{ ativo.total_por_ativo }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="list_investimentos">
+                <h2 class="table_title">Investimentos por Operação</h2>
+                <table class="">
+                    <thead>
+                        <tr>
+                            <th>Operação</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for operacao in annotations.por_operacao %}
+                        <tr>
+                            <td>{{ operacao.operacao }}</td>
+                            <td>R$ {{ operacao.total_por_operacao }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}
+{% block scripts %}
+<script src="{% static 'global/js/dropdowns.js' %}"></script>
+<script src="{% static 'global/js/filter.js' %}"></script>
+{% endblock scripts %}

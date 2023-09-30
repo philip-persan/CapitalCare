@@ -66,7 +66,7 @@ def tipo_gasto_create(form_data: dict, request: HttpRequest):
     return msg
 
 
-def categoria_gasto_create(form_data: dict, request):
+def categoria_gasto_create(form_data: dict, request: HttpRequest):
     nome = form_data.get('nome_categoria')
     categoria_obj = Categoria.objects.create(
         owner=request.user,

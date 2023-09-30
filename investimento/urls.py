@@ -15,4 +15,14 @@ urlpatterns = [
         views.InvestimentosAPIView.as_view(),
         name='api_investimentos'
     ),
+    path(
+        'list/',
+        views.InvestimentosListView.as_view(),
+        name='investimentos_list'
+    ),
+    path(
+        'update/<int:id>/',
+        views.InvestimentoUpdateView.as_view(),
+        name='investimentos_update'
+    )
 ]
