@@ -25,6 +25,7 @@ class TipoRenda(models.Model):
         verbose_name = 'Tipo de Renda'
         verbose_name_plural = 'Tipos de Renda'
         ordering = ['owner', 'nome']
+        unique_together = ('owner', 'nome')
 
 
 class Renda(models.Model):

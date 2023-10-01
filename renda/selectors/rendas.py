@@ -29,3 +29,15 @@ def get_aggregations_rendas(rendas: QuerySet[Renda]) -> Dict:
         max=Max('valor')
     )
     return values
+
+
+def get_annotations_rendas(request):
+    rendas = get_rendas_by_user(request)
+
+    rendas_por_tipo = rendas.values(
+        'tipo__nome'
+    ).annotate(
+        total_por_tipo=Sum('valor')
+    )
+
+    return rendas_por_tipo

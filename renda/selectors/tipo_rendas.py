@@ -10,3 +10,10 @@ def get_tipos_by_user(request) -> QuerySet[TipoRenda]:
         'owner'
     )
     return tipos
+
+
+def get_tipo_by_id(id) -> QuerySet[TipoRenda]:
+    tipo = TipoRenda.objects.get(
+        id=id
+    )
+    return tipo

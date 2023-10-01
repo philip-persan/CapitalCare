@@ -16,14 +16,19 @@ urlpatterns = [
         name='api_list'
     ),
     path(
+        'create/',
+        views.RendasCreateView.as_view(),
+        name='rendas_create'
+    ),
+    path(
         'list/',
         views.RendasListView.as_view(),
         name='rendas_list'
     ),
     path(
-        'create/',
-        views.RendasCreateView.as_view(),
-        name='rendas_create'
+        'update/<int:id>/',
+        views.RendasUpdateView.as_view(),
+        name='rendas_update'
     ),
     path(
         'delete/<int:id>/',
@@ -31,8 +36,8 @@ urlpatterns = [
         name='rendas_delete'
     ),
     path(
-        'update/<int:id>/',
-        views.RendasUpdateView.as_view(),
-        name='rendas_update'
+        'delete/tipo/<int:id>/',
+        views.TipoRendasDeleteView.as_view(),
+        name='tipo_rendas_delete'
     ),
 ]

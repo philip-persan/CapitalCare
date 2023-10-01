@@ -29,10 +29,20 @@ class RendasFilter(df.FilterSet):
         lookup_expr='lte',
         label='Valor menor que'
     )
+    mes = df.NumberFilter(
+        field_name='data',
+        lookup_expr='month',
+        label='Mês'
+    )
+    ano = df.NumberFilter(
+        field_name='data',
+        lookup_expr='year',
+        label='Ano'
+    )
 
     class Meta:
         model = Renda
         fields = [
             'tipo', 'data_maior', 'data_menor',
-            'valor_maior', 'valor_menor'
+            'valor_maior', 'valor_menor', 'mes', 'ano'
         ]

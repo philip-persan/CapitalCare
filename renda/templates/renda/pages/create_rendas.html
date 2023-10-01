@@ -14,6 +14,7 @@
         <h1>Criar Renda</h1>
         <form action="{% url "rendas:rendas_create" %}" method="post">
             {% csrf_token %}
+            <input type="hidden" name="model" value="create_renda">
             {% for field in form_renda %}
             <div class="form_group">
                 <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
@@ -27,6 +28,7 @@
         <h1>Criar Tipo de Renda</h1>
         <form action="" method="post">
             {% csrf_token %}
+            <input type="hidden" name="model" value="create_tipo_renda">
             {% for field in form_tipo_renda %}
             <div class="form_group">
                 <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
@@ -35,6 +37,14 @@
             {% endfor %}
             <button class="btn-s" type="submit">Criar</button>
         </form>
+        <div class="tipos">
+            <h2>Tipos de Renda</h2>
+            <ul>
+                {% for tipo in tipos_renda %}
+                    <li>{{tipo.nome}} <a href="{% url "rendas:tipo_rendas_delete" tipo.id %}"><i class="bi bi-x-circle-fill"></i></a></li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
 </section>
 {% endblock content %}
