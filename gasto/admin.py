@@ -19,6 +19,16 @@ class CategoriaAdmin(admin.ModelAdmin):
 
 @admin.register(Gasto)
 class GastoAdmin(admin.ModelAdmin):
-    list_display = 'owner', 'descricao', 'tipo', 'valor', 'data', 'categoria'
-    list_display_links = 'owner', 'descricao', 'tipo', 'valor', 'data'
-    list_filter = 'owner', 'tipo', 'categoria'
+    list_display = [
+        'owner', 'descricao',
+        'tipo', 'valor',
+        'data', 'categoria'
+    ]
+    list_display_links = [
+        'owner', 'descricao',
+        'tipo', 'valor', 'data'
+    ]
+    list_filter = [
+        'owner', 'descricao',
+        'tipo', 'categoria'
+    ]

@@ -7,7 +7,8 @@ from rest_framework.permissions import IsAuthenticated
 
 from .forms import CategoriaForm, GastoCreateForm, TipoGastoForm
 from .models import Categoria, Gasto, TipoGasto
-from .selectors import get_aggregations_gastos, get_gastos_by_user
+from .selectors import (get_aggregations_gastos, get_annotations_gastos,
+                        get_gastos_by_user)
 from .serializers import (CategoriaSerializer, GastoSerializer,
                           TipoGastoSerializer)
 from .services import (categoria_gasto_create, gasto_create,
@@ -97,9 +98,11 @@ class GastoListView(View):
         page_obj = paginator.get_page(page_number)
 
         values = get_aggregations_gastos(gastos)
+        annotations = get_annotations_gastos(request)
 
         ctx = {
             'page_obj': page_obj,
-            'valores': values
+            'valores': values,
+            'annotations': annotations
         }
         return render(request, 'gasto/pages/list_gastos.html', ctx)

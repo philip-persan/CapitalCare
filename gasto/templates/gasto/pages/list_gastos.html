@@ -46,36 +46,99 @@
             <span>R$ {{ valores.max }}</span>
         </div>
     </div>
-    <div class="">
-        <h2>Gastos</h2>
-        <table class="">
-            <thead>
-                <tr>
-                    <th>Data</th>
-                    <th>Descrição</th>
-                    <th>Tipo</th>
-                    <th>Categoria</th>
-                    <th>Valor</th>
-                    <th>Opções</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for gasto in page_obj %}
-                <tr>
-                    <td>{{ gasto.data|date:"SHORT_DATE_FORMAT" }}</td>
-                    <td>{{ gasto.descricao }}</td>
-                    <td>{{ gasto.tipo }}</td>
-                    <td>{{ gasto.categoria }}</td>
-                    <td>R$ {{ gasto.valor }}</td>
-                    <td class="actions">
-                        <a href=""><i class="bi bi-x-circle-fill"></i></a>
-                        <a href=""><i class="bi bi-pen-fill"></i></a>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        {% include "global/partials/pagination.html" %}
+    <div class="tables">
+        <div class="list_investimentos">
+            <h2>Gastos</h2>
+            <table class="">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Descrição</th>
+                        <th>Tipo</th>
+                        <th>Categoria</th>
+                        <th>Valor</th>
+                        <th>Opções</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for gasto in page_obj %}
+                    <tr>
+                        <td>{{ gasto.data|date:"SHORT_DATE_FORMAT" }}</td>
+                        <td>{{ gasto.descricao }}</td>
+                        <td>{{ gasto.tipo }}</td>
+                        <td>{{ gasto.categoria }}</td>
+                        <td>R$ {{ gasto.valor }}</td>
+                        <td class="actions">
+                            <a href=""><i class="bi bi-x-circle-fill"></i></a>
+                            <a href=""><i class="bi bi-pen-fill"></i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% include "global/partials/pagination.html" %}
+        </div>
+        <div class="annotations">
+            <div class="list_investimentos">
+                <h2 class="table_title">Gastos por Descrição</h2>
+                <table class="">
+                    <thead>
+                        <tr>
+                            <th>Descrição</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for descricao in annotations.por_descricao %}
+                        <tr>
+                            <td>{{ descricao.descricao }}</td>
+                            <td>R$ {{ descricao.total_por_descricao }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="list_investimentos">
+                <h2 class="table_title">Gastos por Tipo</h2>
+                <table class="">
+                    <thead>
+                        <tr>
+                            <th>Tipo</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for tipo in annotations.por_tipo %}
+                        <tr>
+                            <td>{{ tipo.tipo__nome_tipo }}</td>
+                            <td>R$ {{ tipo.total_por_tipo }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="list_investimentos">
+                <h2 class="table_title">Gastos por Categoria</h2>
+                <table class="">
+                    <thead>
+                        <tr>
+                            <th>Categoria</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for categoria in annotations.por_categoria %}
+                        <tr>
+                            <td>{{ categoria.categoria__nome_categoria }}</td>
+                            <td>R$ {{ categoria.total_por_categoria }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </section>
 {% endblock content %}

@@ -41,3 +41,33 @@ def get_aggregations_gastos(rendas: QuerySet[Gasto]) -> Dict:
         max=Max('valor')
     )
     return values
+
+
+def get_annotations_gastos(request):
+    gastos = get_gastos_by_user(request)
+
+    gastos_por_descriao = gastos.values(
+        'descricao'
+    ).annotate(
+        total_por_descricao=Sum('valor')
+    )
+
+    gastos_por_tipo = gastos.values(
+        'tipo__nome_tipo'
+    ).annotate(
+        total_por_tipo=Sum('valor')
+    )
+
+    gastos_por_categoria = gastos.values(
+        'categoria__nome_categoria'
+    ).annotate(
+        total_por_categoria=Sum('valor')
+    )
+
+    annotations = {
+        'por_descricao': gastos_por_descriao,
+        'por_tipo': gastos_por_tipo,
+        'por_categoria': gastos_por_categoria,
+    }
+
+    return annotations
