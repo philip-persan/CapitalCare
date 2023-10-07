@@ -1,11 +1,12 @@
 from django.contrib import messages
 from django.core.paginator import Paginator
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.views import View
 from rest_framework.generics import ListAPIView
 from rest_framework.permissions import IsAuthenticated
 
-from .forms import InvestimentoForm, InvestimentoUpdateForm
+from .forms import (InvestimentoForm, InvestimentoUpdateForm,
+                    TipoInvestimentoForm)
 from .models import Investimento, TipoInvestimento
 from .selectors import (get_aggregations_investimentos,
                         get_annotations_investimentos, get_investimento_by_id,
@@ -55,11 +56,11 @@ class InvestimentoUpdateView(View):
 
     def get(self, request, id):
         investimento = get_investimento_by_id(id)
-        form = InvestimentoForm(request, instance=investimento)
+        form_investimento = InvestimentoForm(request, instance=investimento)
 
         ctx = {
             'investimento': investimento,
-            'form': form
+            'form': form_investimento
         }
 
         return render(
@@ -82,3 +83,81 @@ class InvestimentoUpdateView(View):
                 request, f'Erro ao salvar o Investimento {investimento}'
             )
         return redirect('investimentos:investimentos_list')
+
+
+class InvestimentoCreateView(View):
+    def get(self, request):
+        form = InvestimentoForm(request)
+        form_tipo = TipoInvestimentoForm()
+        tipos = TipoInvestimento.objects.filter(
+            owner=request.user
+        )
+
+        ctx = {
+            'form': form,
+            'form_tipo': form_tipo,
+            'tipos': tipos
+        }
+        return render(request, 'investimento/pages/create_investimento.html', ctx)  # noqa
+
+    def post(self, request):
+        form = InvestimentoForm(request=request, data=request.POST)
+
+        if form.is_valid():
+            data = form.save(commit=False)
+            data.owner = request.user
+            data.save()
+
+            messages.success(
+                request, 'Investimento Criado com Sucesso!'
+            )
+            return redirect('investimentos:investimentos_create')
+
+
+class InvestimentoDeleteView(View):
+    def get(self, request, id):
+        investimento = get_object_or_404(Investimento, id=id)
+
+        ctx = {
+            'investimento': investimento
+        }
+
+        return render(request, 'investimento/pages/delete_investimento.html', ctx)  # noqa
+
+    def post(self, request, id):
+        invest = request.POST.get('id')
+        investimento = get_object_or_404(Investimento, id=invest)
+
+        messages.success(
+            request, f'Investimento {investimento} apagado com sucesso!')
+
+        investimento.delete()
+
+        return redirect('investimentos:investimentos_list')
+
+
+class TipoInvestimentoCreateView(View):
+    def post(self, request):
+        form = TipoInvestimentoForm(request.POST or None)
+
+        if form.is_valid():
+            data = form.save(commit=False)
+            data.owner = request.user
+            data.save()
+            messages.success(
+                request,
+                'Tipo de investimento criado!'
+            )
+
+        return redirect('investimentos:investimentos_create')
+
+
+class TipoInvestimentoDeleteView(View):
+    def get(self, request, id):
+        tipo = get_object_or_404(TipoInvestimento, id=id)
+        tipo.delete()
+        messages.success(
+            request,
+            'Tipo de investimento apagado!'
+        )
+        return redirect('investimentos:investimentos_create')

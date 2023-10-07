@@ -16,6 +16,11 @@ urlpatterns = [
         name='api_investimentos'
     ),
     path(
+        'create/',
+        views.InvestimentoCreateView.as_view(),
+        name='investimentos_create'
+    ),
+    path(
         'list/',
         views.InvestimentosListView.as_view(),
         name='investimentos_list'
@@ -24,5 +29,20 @@ urlpatterns = [
         'update/<int:id>/',
         views.InvestimentoUpdateView.as_view(),
         name='investimentos_update'
+    ),
+    path(
+        'delete/<int:id>/',
+        views.InvestimentoDeleteView.as_view(),
+        name='investimentos_delete'
+    ),
+    path(
+        'tipo/create/',
+        views.TipoInvestimentoCreateView.as_view(),
+        name='tipo_create'
+    ),
+    path(
+        'tipo/delete/<int:id>/',
+        views.TipoInvestimentoDeleteView.as_view(),
+        name='tipo_delete'
     )
 ]

@@ -6,8 +6,7 @@
 {% block title %}Invesitmentos{% endblock title %}
 {% block content %}
 <section>
-    <h1>Editar Invesitmento</h1>
-    <h1>{{ investimento }}</h1>
+    <h1>Criar Invesitmento</h1>
     {% if messages %}
         <div class="messages">
             {% for message in messages %}
@@ -16,8 +15,8 @@
         </div>
     {% endif %}
     <div class="edit_investimentos">
-        <h2 class="table_title">Editar Investimento</h2>
-        <form action="{% url "investimentos:investimentos_update" investimento.id %}" method="post">
+        <h2 class="table_title">Criar Investimento</h2>
+        <form action="{% url "investimentos:investimentos_create" %}" method="post">
             {% csrf_token %}
             <input type="hidden" name="id" value="{{ request.user }}">
             {% for field in form %}
@@ -29,6 +28,24 @@
             <button type="submit">Salvar</button>
             <a href="{% url "investimentos:investimentos_list" %}">Voltar</a>
         </form>
+    </div>
+    <div class="edit_investimentos">
+        <h2 class="table_title">Criar Tipo de Investimento</h2>
+        <form action="{% url "investimentos:tipo_create" %}" method="post">
+            {% csrf_token %}
+            {% for field in form_tipo %}
+                <div class="form_group">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
+                    {{ field }}
+                </div>
+            {% endfor %}
+            <button type="submit">Salvar</button>
+        </form>
+        <ul>
+            {% for tipo in tipos %}
+                <li>{{ tipo }} <a href="{% url "investimentos:tipo_delete" tipo.id %}"><i class="bi bi-x-circle-fill"></i></a></li>
+            {% endfor %}
+        </ul>
     </div>
 </section>
 {% endblock content %}

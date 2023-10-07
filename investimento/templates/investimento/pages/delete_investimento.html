@@ -6,7 +6,7 @@
 {% block title %}Invesitmentos{% endblock title %}
 {% block content %}
 <section>
-    <h1>Editar Invesitmento</h1>
+    <h1>Apagar Invesitmento</h1>
     <h1>{{ investimento }}</h1>
     {% if messages %}
         <div class="messages">
@@ -16,17 +16,20 @@
         </div>
     {% endif %}
     <div class="edit_investimentos">
-        <h2 class="table_title">Editar Investimento</h2>
-        <form action="{% url "investimentos:investimentos_update" investimento.id %}" method="post">
+        <h2 class="table_title">Apagar Investimento?</h2>
+        <ul>
+            <li>Tipo: {{ investimento.tipo }}</li>
+            <li>Valor: R$ {{ investimento.valor }}</li>
+            <li>Data: {{ investimento.data|date:"SHORT_DATE_FORMAT" }}</li>
+            <li>Operação: {{ investimento.operacao }}</li>
+            <li>Ativo: {{ investimento.ativo }}</li>
+            <li>Observação: {{ investimento.obs }}</li>
+        </ul>
+        <form action="{% url "investimentos:investimentos_delete" investimento.id %}" method="post">
             {% csrf_token %}
-            <input type="hidden" name="id" value="{{ request.user }}">
-            {% for field in form %}
-                <div class="form_group">
-                    <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
-                    {{ field }}
-                </div>
-            {% endfor %}
-            <button type="submit">Salvar</button>
+            <input type="hidden" name="user" value="{{ request.user }}">
+            <input type="hidden" name="id" value="{{ investimento.id }}">
+            <button type="submit">Apagar</button>
             <a href="{% url "investimentos:investimentos_list" %}">Voltar</a>
         </form>
     </div>
