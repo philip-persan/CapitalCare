@@ -16,6 +16,16 @@ urlpatterns = [
         name='api_list'
     ),
     path(
+        'api/v1/agreggations/',
+        views.RendasAgreggationsAPIView.as_view(),
+        name='api_agreggations'
+    ),
+    path(
+        'api/v1/annotations/',
+        views.RendasAnnotationsAPIView.as_view(),
+        name='api_annotations'
+    ),
+    path(
         'create/',
         views.RendasCreateView.as_view(),
         name='rendas_create'
