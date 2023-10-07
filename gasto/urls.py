@@ -21,6 +21,16 @@ urlpatterns = [
         name='api_gasto_list'
     ),
     path(
+        'api/v1/aggregations/',
+        views.GastoAggregationsAPIView.as_view(),
+        name='api_gasto_aggregations'
+    ),
+    path(
+        'api/v1/annotations/',
+        views.GastoAnnotationsAPIView.as_view(),
+        name='api_gasto_annotations'
+    ),
+    path(
         'create/',
         views.GastoCreateView.as_view(),
         name='gasto_create'
