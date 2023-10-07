@@ -16,6 +16,16 @@ urlpatterns = [
         name='api_investimentos'
     ),
     path(
+        'api/v1/agreggations/',
+        views.InvestimentosAggregationAPIView.as_view(),
+        name='api_agreggations'
+    ),
+    path(
+        'api/v1/annotations/',
+        views.InvestimentosAnnotationsAPIView.as_view(),
+        name='api_annotations'
+    ),
+    path(
         'create/',
         views.InvestimentoCreateView.as_view(),
         name='investimentos_create'
