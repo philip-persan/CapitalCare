@@ -1,36 +1,13 @@
-from django.contrib import messages
 from django.core.paginator import Paginator
 from django.shortcuts import redirect, render
 from django.views import View
-from rest_framework.generics import ListAPIView
-from rest_framework.permissions import IsAuthenticated
 
-from .filters import RendasFilter
-from .forms import RendaForm, TipoRendaForm
-from .models import Renda, TipoRenda
-from .selectors import (get_aggregations_rendas, get_annotations_rendas,
-                        get_rendas_by_id, get_rendas_by_user, get_tipo_by_id,
-                        get_tipos_by_user)
-from .serializers import RendaSerializer, TipoRendaSerializer
-from .services import rendas_create, rendas_delete, rendas_update
-
-
-class TipoRendasAPIView(ListAPIView):
-    serializer_class = TipoRendaSerializer
-    permission_classes = [IsAuthenticated]
-
-    def get_queryset(self):
-        return TipoRenda.objects.filter(owner=self.request.user)
-
-
-class RendasAPIView(ListAPIView):
-    serializer_class = RendaSerializer
-    permission_classes = [IsAuthenticated]
-
-    def get_queryset(self):
-        return Renda.objects.filter(
-            owner=self.request.user
-        ).select_related('tipo')
+from ..filters import RendasFilter
+from ..forms import RendaForm, TipoRendaForm
+from ..selectors import (get_aggregations_rendas, get_annotations_rendas,
+                         get_rendas_by_id, get_rendas_by_user,
+                         get_tipos_by_user)
+from ..services import rendas_create, rendas_delete, rendas_update
 
 
 class RendasListView(View):
@@ -83,14 +60,6 @@ class RendasCreateView(View):
                 tipo_renda.owner = request.user
                 tipo_renda.save()
 
-        return redirect('rendas:rendas_create')
-
-
-class TipoRendasDeleteView(View):
-    def get(self, request, id):
-        tipo = get_tipo_by_id(id)
-        tipo.delete()
-        messages.success(request, 'Tipo de Renda Apagado com Sucesso!')
         return redirect('rendas:rendas_create')
 
 

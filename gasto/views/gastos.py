@@ -2,49 +2,12 @@ from django.contrib import messages
 from django.core.paginator import Paginator
 from django.shortcuts import redirect, render
 from django.views import View
-from rest_framework.generics import ListAPIView
-from rest_framework.permissions import IsAuthenticated
 
-from .forms import CategoriaForm, GastoCreateForm, TipoGastoForm
-from .models import Categoria, Gasto, TipoGasto
-from .selectors import (get_aggregations_gastos, get_annotations_gastos,
-                        get_gastos_by_user)
-from .serializers import (CategoriaSerializer, GastoSerializer,
-                          TipoGastoSerializer)
-from .services import (categoria_gasto_create, gasto_create,
-                       gasto_create_parcelado, tipo_gasto_create)
-
-
-class TipoGastoAPIView(ListAPIView):
-    serializer_class = TipoGastoSerializer
-    permission_classes = [IsAuthenticated]
-
-    def get_queryset(self):
-        return TipoGasto.objects.filter(
-            owner=self.request.user
-        )
-
-
-class CategoriaAPIView(ListAPIView):
-    serializer_class = CategoriaSerializer
-    permission_classes = [IsAuthenticated]
-
-    def get_queryset(self):
-        return Categoria.objects.filter(
-            owner=self.request.user
-        )
-
-
-class GastoAPIView(ListAPIView):
-    serializer_class = GastoSerializer
-    permission_classes = [IsAuthenticated]
-
-    def get_queryset(self):
-        return Gasto.objects.filter(
-            owner=self.request.user
-        ).select_related(
-            'tipo', 'categoria'
-        )
+from ..forms import CategoriaForm, GastoCreateForm, TipoGastoForm
+from ..selectors import (get_aggregations_gastos, get_annotations_gastos,
+                         get_gastos_by_user)
+from ..services import (categoria_gasto_create, gasto_create,
+                        gasto_create_parcelado, tipo_gasto_create)
 
 
 class GastoCreateView(View):
