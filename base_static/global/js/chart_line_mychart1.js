@@ -26,18 +26,16 @@ const fetchOptions = {
 };
 
 function formatToMonthYear(dateString) {
-  // Convertendo data no formato "DD/MM/YYYY" para "YYYY-MM-DD"
   const [day, month, year] = dateString.split("/");
   const formattedDate = `${year}-${month}-${day}`;
 
   const date = new Date(formattedDate);
-  const monthTwoDigit = (date.getMonth() + 1).toString().padStart(2, "0"); // Esta é uma maneira alternativa de garantir dois dígitos para o mês
+  const monthTwoDigit = (date.getMonth() + 1).toString().padStart(2, "0");
   const yearTwoDigit = date.getFullYear().toString().slice(2);
 
   return `${monthTwoDigit}/${yearTwoDigit}`;
 }
 
-// Função auxiliar para calcular o total para um mês específico
 function totalForMonth(dataArray, monthYear) {
   const [month, year] = monthYear.split("/");
   return dataArray
@@ -77,21 +75,21 @@ Promise.all([
           {
             label: "Rendas",
             data: rendasTotals,
-            borderColor: "#007f5f",
+            borderColor: "#02C39A", // Primary
             fill: false,
             tension: 0.2,
           },
           {
             label: "Investimentos",
             data: investimentosTotals,
-            borderColor: "#55a630",
+            borderColor: "#7B2CBF", // Accent
             fill: false,
             tension: 0.2,
           },
           {
             label: "Gastos",
             data: gastosTotals,
-            borderColor: "#80b918",
+            borderColor: "#495057", // Neutral Dark Gray
             fill: false,
             tension: 0.2,
           },

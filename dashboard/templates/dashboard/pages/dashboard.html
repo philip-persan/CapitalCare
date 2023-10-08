@@ -3,148 +3,47 @@
 {% block title %}Dashboard{% endblock title %}
 {% block content %}
 <section class="content">
-    <div class="filters">
-        <h1>Filtros <button id="btn-filter"><i class="bi bi-filter-square-fill icon"></i></button></h1>
-
-        <form id="form-filter" action="" method="get">
-            <div class="form_group">
-                <label for="tipo">Tipo:</label>
-                <select name="tipo" id="tipo">
-                    <option value="rendas">Rendas</option>
-                    <option value="investimentos">Investimentos</option>
-                    <option value="gastos">Gastos</option>
-                </select>
-            </div>
-            <div class="form_group">
-                <label for="tipo">Categoria:</label>
-                <select name="tipo" id="tipo">
-                    <option value="rendas">Cartão</option>
-                    <option value="investimentos">Uber</option>
-                    <option value="gastos">Ifood</option>
-                </select>
-            </div>
-            <div class="form_group">
-                <label for="valor">Valor Maior:</label>
-                <input type="number" name="valor" id="valor">
-            </div>
-            <div class="form_group">
-                <label for="valor">Valor Menor:</label>
-                <input type="number" name="valor" id="valor">
-            </div>
-            <div class="form_group">
-                <label for="valor">Mês:</label>
-                <input type="number" name="valor" id="valor">
-            </div>
-            <div class="form_group">
-                <label for="valor">Ano:</label>
-                <input type="number" name="valor" id="valor">
-            </div>
-            <div class="btns">
-                <button class="btn-s" type="submit">Filtrar</button>
-                <a class="btn-s" href="">Limpar</a>
-            </div>
-        </form>
+    <div class="content_header">
+        <h1 class="title_hero">Dashboard</h1>
     </div>
     <div class="cards">
         <div class="card rendas">
             <h3>Rendas</h3>
-            <span>R$ {{ total_rendas.total }}</span>
+            <span><i class="bi bi-cash-stack"></i> R$ {{ total_rendas.total }}</span>
         </div>
         <div class="card investimentos">
             <h3>Investimentos</h3>
-            <span>R$ {{ total_investimentos.total }}</span>
+            <span><i class="bi bi-graph-up"></i> R$ {{ total_investimentos.total }}</span>
         </div>
         <div class="card gastos">
             <h3>Gastos</h3>
-            <span>R$ {{ total_gastos.total }}</span>
+            <span><i class="bi bi-credit-card-fill"></i> R$ {{ total_gastos.total }}</span>
         </div>
         <div class="card sem-track">
             <h3>Sem Lançamento</h3>
-            <span>R$ {{ sem_lancamento }}</span>
+            <span><i class="bi bi-question-circle-fill"></i> R$ {{ sem_lancamento }}</span>
         </div>
     </div>
+    <div class="charts">
         <div class="chart">
-        <canvas id="myChart"></canvas>
-    </div>
-    <div class="chart">
-        <canvas id="myChart2"></canvas>
-    </div>
-    <div class="tables">
-        <div class="table">
-            <h2>Rendas</h2>
-            <table class="rendas_table">
-                <thead>
-                    <tr>
-                        <th>Tipo</th>
-                        <th>Valor</th>
-                        <th>Data</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for renda in rendas %}
-                        <tr>
-                            <td>{{ renda.tipo }}</td>
-                            <td>R$ {{ renda.valor }}</td>
-                            <td>{{ renda.data|date:"SHORT_DATE_FORMAT" }}</td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            <canvas id="myChart"></canvas>
         </div>
-        <div class="table">
-            <h2>Investimentos</h2>
-            <table class="investimentos_table">
-                <thead>
-                    <tr>
-                        <th>Tipo</th>
-                        <th>Valor</th>
-                        <th>Data</th>
-                        <th>Operação</th>
-                        <th>Ativo</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for invest in investimentos %}
-                        <tr>
-                            <td>{{ invest.tipo }}</td>
-                            <td>R$ {{ invest.valor }}</td>
-                            <td>{{ invest.data|date:"SHORT_DATE_FORMAT" }}</td>
-                            <td>{{ invest.operacao }}</td>
-                            <td>{{ invest.ativo }}</td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+        <div class="chart">
+            <canvas id="myChart2"></canvas>
         </div>
-        <div class="table">
-            <h2>Gastos</h2>
-            <table class="gastos_table">
-                <thead>
-                    <tr>
-                        <th>Tipo</th>
-                        <th>Categoria</th>
-                        <th>Valor</th>
-                        <th>Data</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for gasto in gastos %}
-                        <tr>
-                            <td>{{ gasto.tipo }}</td>
-                            <td>{{ gasto.categoria }}</td>
-                            <td>R$ {{ gasto.valor }}</td>
-                            <td>R$ {{ gasto.data|date:"SHORT_DATE_FORMAT" }}</td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+        <div class="chart">
+            <canvas id="myChart3"></canvas>
+        </div>
+        <div class="chart">
+            <canvas id="myChart4"></canvas>
         </div>
     </div>
 </section>
 {% endblock content %}
 {% block scripts %}
-<script src="{% static 'global/js/dropdowns.js' %}"></script>
-<script src="{% static 'global/js/chart_line.js' %}"></script>
-<script src="{% static 'global/js/chart_bar.js' %}"></script>
+<script src="{% static 'global/js/chart_line_mychart1.js' %}"></script>
+<script src="{% static 'global/js/chart_bar_mychart2.js' %}"></script>
+<script src="{% static 'global/js/chart_bar_mychart3.js' %}"></script>
+<script src="{% static 'global/js/chart_bar_mychart4.js' %}"></script>
 <script src="{% static 'global/js/filter.js' %}"></script>
 {% endblock scripts %}

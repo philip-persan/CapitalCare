@@ -1,6 +1,7 @@
 from typing import Dict
 
 from django.db.models import Avg, Max, Min, Sum
+from django.db.models.functions import ExtractYear
 from django.db.models.query import QuerySet
 from django.shortcuts import get_object_or_404
 
@@ -41,3 +42,15 @@ def get_annotations_rendas(request):
     )
 
     return rendas_por_tipo
+
+
+def get_aggregations_rendas_por_ano(rendas: QuerySet[Renda]) -> Dict:
+    aggregations = rendas.annotate(
+        ano=ExtractYear('data')
+    ).values('ano').annotate(
+        total=Sum('valor'),
+        avg=Avg('valor'),
+        min=Min('valor'),
+        max=Max('valor')
+    )
+    return aggregations

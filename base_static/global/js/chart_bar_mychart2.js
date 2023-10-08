@@ -3,12 +3,12 @@ const ctx2 = document.getElementById("myChart2");
 const plugin2 = {
   id: "customCanvasBackgroundColor",
   beforeDraw: (chart, args, options) => {
-    const { ctx2 } = chart;
-    ctx2.save();
-    ctx2.globalCompositeOperation = "destination-over";
-    ctx2.fillStyle = options.color || "#fff";
-    ctx2.fillRect(0, 0, chart.width, chart.height);
-    ctx2.restore();
+    const { ctx } = chart; // Corrigido para ctx
+    ctx.save();
+    ctx.globalCompositeOperation = "destination-over";
+    ctx.fillStyle = options.color || "#fff";
+    ctx.fillRect(0, 0, chart.width, chart.height);
+    ctx.restore();
   },
 };
 
@@ -16,7 +16,7 @@ const url = "http://127.0.0.1:8000/rendas/api/v1/rendas/";
 
 fetch(url, {
   method: "GET",
-  credentials: "include", // Essencial para enviar cookies com a requisição
+  credentials: "include",
   headers: {
     "Content-Type": "application/json",
   },
@@ -35,7 +35,26 @@ fetch(url, {
       parseFloat(totalsByType[label].toFixed(2))
     );
 
+    // Cores correspondentes à nova paleta
+    const backgroundColors = [
+      "#02C39A", // Primary
+      "#7B2CBF", // Accent
+      "#495057", // Neutral Dark Gray
+      "#DEE2E6", // Neutral Light Gray
+      "#D8D9FA", // Neutral Light
+      "#007f5f",
+      "#55a630",
+      "#80b918",
+      "#aacc00",
+      "#bfd200",
+      "#d4d700",
+      "#dddf00",
+      "#eeef20",
+      "#ffff3f",
+    ].slice(0, labels.length);
+
     new Chart(ctx2, {
+      // Deve ser ctx2, não ctx
       type: "bar",
       data: {
         labels: labels,
@@ -44,17 +63,7 @@ fetch(url, {
             label: "Valor R$",
             data: values,
             borderWidth: 1,
-            backgroundColor: [
-              "#007f5f",
-              "#55a630",
-              "#80b918",
-              "#aacc00",
-              "#bfd200",
-              "#d4d700",
-              "#dddf00",
-              "#eeef20",
-              "#ffff3f",
-            ],
+            backgroundColor: backgroundColors,
           },
         ],
       },
@@ -83,8 +92,8 @@ fetch(url, {
           },
           tickWidth: 3,
         },
-        backgroundColor: "rgb(255,255,255)",
+        backgroundColor: "rgba(0, 0, 0, 0)",
       },
-      plugin2s: [plugin2],
+      plugins: [plugin2],
     });
   });

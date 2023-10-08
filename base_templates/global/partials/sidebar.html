@@ -1,23 +1,23 @@
 <aside class="sidebar">
-    <h2>Capital Care</h2>
+    <h2 class="title_hero">Capital Care</h2>
     <nav>
-        <a class="side_btn animated-link" href="{% url "dashboard:index" %}">Dashboard</a>
+        <a class="side_btn animated-link" href="{% url "dashboard:index" %}"><i class="bi bi-clipboard-data-fill"></i> Dashboard</a>
         <div class="dropdown">
-            <button class="side_btn animated-link">Rendas</button>
+            <button class="side_btn animated-link"><i class="bi bi-cash-stack"></i> Rendas</button>
             <div class="drop-links">
                 <a class="animated-link-black" href="{% url "rendas:rendas_list" %}">Lista de Rendas</a>
                 <a class="animated-link-black" href="{% url "rendas:rendas_create" %}">Adicionar Rendas</a>
             </div>
         </div>
         <div class="dropdown">
-            <button class="side_btn animated-link">Investimentos</button>
+            <button class="side_btn animated-link"><i class="bi bi-graph-up"></i> Investimentos</button>
             <div class="drop-links">
                 <a class="animated-link-black" href="{% url "investimentos:investimentos_list" %}">Lista de Investimentos</a>
                 <a class="animated-link-black" href="{% url "investimentos:investimentos_create" %}">Adicionar Investimentos</a>
             </div>
         </div>
         <div class="dropdown">
-            <button class="side_btn animated-link">Gastos</button>
+            <button class="side_btn animated-link"><i class="bi bi-credit-card-fill"></i> Gastos</button>
             <div class="drop-links">
                 <a class="animated-link-black" href="{% url "gastos:gasto_list" %}">Lista de Gastos</a>
                 <a class="animated-link-black" href="{% url "gastos:gasto_create" %}">Adicionar Gastos</a>

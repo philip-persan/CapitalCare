@@ -6,6 +6,7 @@ from django.views import View
 from gasto.models import Gasto
 from investimento.models import Investimento
 from renda.models import Renda
+from renda.selectors import get_aggregations_rendas_por_ano
 
 
 class DashboardView(LoginRequiredMixin, View):
@@ -18,6 +19,8 @@ class DashboardView(LoginRequiredMixin, View):
             'tipo'
         )
         total_rendas = rendas.aggregate(total=Sum('valor'))
+        agreggations_per_year = get_aggregations_rendas_por_ano(rendas)
+        print(agreggations_per_year)
 
         investimentos = Investimento.objects.filter(
             owner=request.user

@@ -4,13 +4,14 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: "#212224",
-        p_dark: "#18392B",
-        primary_bg: "#14452F",
-        heading: "#066839",
+        primary: "#02C39A",
+        accent: "#7B2CBF",
+        neutral_dark_gray: "#495057",
+        neutral_ligth_gray: "#DEE2E6",
+        neutral_ligth: "#F8F9FA",
       },
     },
   },
   plugins: [],
 };
-// https://coolors.co/palette/066839-0a5c36-0f5132-14452f-18392b-1d2e28-212224
+// https://coolors.co/70e000-7b2cbf-495057-dee2e6-f8f9fa
