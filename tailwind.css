@@ -5,7 +5,14 @@
 
 body {
   font-family: "Lato", sans-serif;
+  overflow: hidden;
   @apply bg-neutral_ligth_gray text-neutral_dark_gray;
+}
+
+input,
+select,
+option {
+  @apply px-2 py-1 rounded;
 }
 
 main {
@@ -45,6 +52,7 @@ aside {
   top: 0;
   right: 0;
   transform: translate(110%, 0);
+  z-index: 100;
 }
 
 .side_btn {
@@ -55,12 +63,22 @@ aside {
   @apply text-neutral-800 font-bold text-2xl;
 }
 
+.title {
+  @apply flex flex-col items-center justify-center gap-4;
+}
+
+.title > img {
+  @apply w-1/2;
+}
+
 .content {
   @apply w-full h-auto;
 }
 
 .content_header {
   @apply w-full bg-neutral_ligth p-4 shadow-lg;
+  @apply flex items-center justify-between;
+  @apply relative;
 }
 
 .cards {
@@ -82,25 +100,146 @@ aside {
 
 .charts {
   @apply w-full h-3/4 p-4;
-  @apply flex flex-wrap items-start justify-between gap-2;
+  @apply flex flex-wrap items-start justify-evenly gap-2;
 }
 
 .chart {
   @apply w-[40%] p-2 bg-neutral_ligth rounded shadow-lg;
 }
 
-/* 
+.section_container {
+  @apply w-full h-auto;
+  @apply flex flex-col justify-stretch items-stretch;
+}
+
+label {
+  @apply block;
+}
+
+.list_section {
+  @apply p-4 max-h-screen overflow-auto;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: auto;
+  gap: 1rem;
+}
+
+.chart1_list,
+.chart2_list {
+  @apply p-2 bg-neutral_ligth rounded shadow-lg;
+}
+
+.chart1_list {
+  @apply col-span-3 max-h-[30rem];
+}
+
+.chart2_list {
+  @apply col-span-3 max-h-[30rem];
+  @apply flex items-center justify-center;
+}
+
+.filters {
+  @apply flex flex-col items-center justify-start gap-4;
+  @apply col-span-2 h-fit p-4 bg-neutral_ligth rounded;
+}
+
+.filters > h1 {
+  @apply text-lg font-semibold;
+}
+
+.filters > form {
+  @apply flex flex-wrap items-center justify-evenly gap-2;
+}
+
+.filters > form > .form_group > input {
+  @apply w-32 bg-neutral_dark_gray text-white;
+}
+
+.filters > form > .form_group {
+  @apply w-fit;
+}
+
+.btns {
+  @apply flex items-center justify-center gap-4;
+}
+
+.btn-s {
+  @apply px-2 py-1 rounded bg-neutral_dark_gray text-white;
+}
+
+.tables {
+  @apply h-auto;
+  @apply bg-neutral_ligth p-4 rounded shadow-lg;
+  @apply col-span-4 flex items-start justify-evenly;
+}
+
+.list_investimentos {
+  @apply w-[55%];
+  @apply flex flex-col items-center justify-center gap-2;
+  @apply border-r-2 border-neutral_dark_gray;
+}
+
+.list_investimentos > table {
+  @apply w-full text-center;
+}
+
+.annotations {
+  @apply w-[40%];
+}
+
+.annotations > table {
+  @apply w-full text-center;
+}
+
+.table_title {
+  @apply font-semibold text-lg text-center;
+}
+
+.create_objects {
+  @apply p-4 flex items-start justify-around;
+}
+
+.pd-bg-sh {
+  @apply bg-neutral_ligth p-4 rounded shadow-lg;
+}
+
+.form_create {
+  @apply flex flex-col items-center justify-start gap-4;
+}
+
+.form_create > form {
+  @apply flex flex-col items-start justify-center gap-4;
+}
+
+.form_create > form > .form_group > input,
+select,
+option {
+  @apply bg-neutral_dark_gray text-white;
+}
+
+.tipos {
+  @apply w-full;
+}
+
+.tipos > ul {
+  @apply flex flex-col gap-5;
+}
+
+.tipos > ul > li {
+  @apply w-full flex items-center justify-between text-lg;
+}
+
 ::-webkit-scrollbar {
   @apply w-2;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-primary_bg rounded-sm;
+  @apply bg-neutral_ligth rounded-sm;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-heading rounded-sm;
-} */
+  @apply bg-primary rounded-sm;
+}
 
 .success {
   @apply bg-green-400 rounded text-white px-4 py-2;

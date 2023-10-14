@@ -7,7 +7,9 @@ from ..forms import RendaForm, TipoRendaForm
 from ..selectors import (get_aggregations_rendas, get_annotations_rendas,
                          get_rendas_by_id, get_rendas_by_user,
                          get_tipos_by_user)
-from ..services import rendas_create, rendas_delete, rendas_update
+from ..services import (rendas_create, rendas_delete,
+                        rendas_per_month_plotly_bar,
+                        rendas_per_month_type_plotly_bar, rendas_update)
 
 
 class RendasListView(View):
@@ -17,9 +19,11 @@ class RendasListView(View):
         filter = RendasFilter(request.GET, queryset=rendas)
         rendas = filter.qs
 
+        chart1 = rendas_per_month_plotly_bar(rendas)
+        chart2 = rendas_per_month_type_plotly_bar(rendas)
         annotations = get_annotations_rendas(request)
 
-        paginator = Paginator(rendas, 15)
+        paginator = Paginator(rendas, 8)
         page_number = request.GET.get("page")
         page_obj = paginator.get_page(page_number)
 
@@ -29,7 +33,9 @@ class RendasListView(View):
             'page_obj': page_obj,
             'valores': valores,
             'filters': filter,
-            'annotations': annotations
+            'annotations': annotations,
+            'chart1': chart1,
+            'chart2': chart2
         }
         return render(request, 'renda/pages/list_rendas.html', ctx)
 

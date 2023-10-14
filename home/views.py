@@ -30,7 +30,8 @@ class LoginView(View):
 
             if authenticated_user is not None:
                 login(request, authenticated_user)
-                return redirect("home:index")
+                messages.success(request, f'Bem vindo de volta {request.user}')
+                return redirect("dashboard:index")
 
             messages.error(request, 'Credenciais Inválidas')
             return redirect("home:index")

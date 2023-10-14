@@ -2,52 +2,51 @@
 {% load static %}
 {% block title %}Criar Renda{% endblock title %}
 {% block content %}
-<section>
-    {% if messages %}
-        <div class="messages">
-            {% for message in messages %}
-                <span class="{{ message.tags }}">{{ message }}</span>
-            {% endfor %}
-        </div>
-    {% endif %}
-    <div class="form_renda">
-        <h1>Criar Renda</h1>
-        <form action="{% url "rendas:rendas_create" %}" method="post">
-            {% csrf_token %}
-            <input type="hidden" name="model" value="create_renda">
-            {% for field in form_renda %}
-            <div class="form_group">
-                <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
-                {{ field }}
-            </div>
-            {% endfor %}
-            <button class="btn-s" type="submit">Criar</button>
-        </form>
+<section class="section_container">
+    <div class="content_header">
+        <h1 class="title_hero">Criar Renda</h1>
+        {% include "global/partials/messages.html" %}
     </div>
-    <div class="form_tipo_renda">
-        <h1>Criar Tipo de Renda</h1>
-        <form action="" method="post">
-            {% csrf_token %}
-            <input type="hidden" name="model" value="create_tipo_renda">
-            {% for field in form_tipo_renda %}
-            <div class="form_group">
-                <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
-                {{ field }}
-            </div>
-            {% endfor %}
-            <button class="btn-s" type="submit">Criar</button>
-        </form>
-        <div class="tipos">
-            <h2>Tipos de Renda</h2>
-            <ul>
-                {% for tipo in tipos_renda %}
-                    <li>{{tipo.nome}} <a href="{% url "rendas:tipo_rendas_delete" tipo.id %}"><i class="bi bi-x-circle-fill"></i></a></li>
+    <div class="create_objects">
+        <div class="form_create pd-bg-sh">
+            <h1>Criar Renda</h1>
+            <form action="{% url "rendas:rendas_create" %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="model" value="create_renda">
+                {% for field in form_renda %}
+                <div class="form_group">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
+                    {{ field }}
+                </div>
                 {% endfor %}
-            </ul>
+                <button class="btn-s" type="submit">Criar</button>
+            </form>
+        </div>
+        <div class="form_create pd-bg-sh">
+            <h1>Criar Tipo de Renda</h1>
+            <form action="" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="model" value="create_tipo_renda">
+                {% for field in form_tipo_renda %}
+                <div class="form_group">
+                    <label for="{{ field.id_for_label }}">{{ field.label }}:</label>
+                    {{ field }}
+                </div>
+                {% endfor %}
+                <button class="btn-s" type="submit">Criar</button>
+            </form>
+            <h2>Tipos de Renda</h2>
+            <div class="tipos">
+                <ul>
+                    {% for tipo in tipos_renda %}
+                        <li>{{tipo.nome}} <a href="{% url "rendas:tipo_rendas_delete" tipo.id %}"><i class="bi bi-x-circle-fill"></i></a></li>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
     </div>
 </section>
 {% endblock content %}
 {% block scripts %}
-<script src="{% static 'global/js/dropdowns.js' %}"></script>
+
 {% endblock scripts %}

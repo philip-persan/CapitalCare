@@ -58,4 +58,4 @@ class Renda(models.Model):
     class Meta:
         verbose_name = 'Renda'
         verbose_name_plural = 'Rendas'
-        ordering = ['owner', 'tipo', '-data']
+        ordering = ['owner', '-data']

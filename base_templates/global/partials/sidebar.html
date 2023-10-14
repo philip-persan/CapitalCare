@@ -1,5 +1,9 @@
+{% load static %}
 <aside class="sidebar">
-    <h2 class="title_hero">Capital Care</h2>
+    <div class="title">
+        <img src="{% static "global/images/logo.png" %}" alt="Logo" srcset="">
+        <h2 class="title_hero">Capital Care</h2>
+    </div>
     <nav>
         <a class="side_btn animated-link" href="{% url "dashboard:index" %}"><i class="bi bi-clipboard-data-fill"></i> Dashboard</a>
         <div class="dropdown">
@@ -25,7 +29,10 @@
         </div>
     </nav>
     <div class="links">
-        <a href="">Perfil</a>
-        <a href="">Sair</a>
+        <form action="{% url "home:logout" %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="username" value="{{ request.user.username }}">
+            <button type="submit"><i class="bi bi-box-arrow-left"></i> <span>Sair</span></button>
+        </form>
     </div>
 </aside>
