@@ -43,8 +43,7 @@ def get_aggregations_gastos(rendas: QuerySet[Gasto]) -> Dict:
     return values
 
 
-def get_annotations_gastos(request):
-    gastos = get_gastos_by_user(request)
+def get_annotations_gastos(gastos: QuerySet[Gasto]):
 
     gastos_por_descriao = gastos.values(
         'descricao'

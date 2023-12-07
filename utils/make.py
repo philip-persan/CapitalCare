@@ -134,26 +134,27 @@ class GastosFake:
         user = User.objects.get(username=self.username)
         tipo_exist = TipoGasto.objects.filter(
             owner=user,
-            nome='Debito Automático'
+            nome_tipo='Debito Automático'
         ).exists()
         categoria_exist = Categoria.objects.filter(
             owner=user,
-            nome='Contas Básicas'
+            nome_categoria='Contas Básicas'
         ).exists()
 
         if not tipo_exist:
             tipo = TipoGasto.objects.create(
-                owner=user, nome='Debito Automático')
+                owner=user, nome_tipo='Debito Automático')
         else:
-            tipo = TipoGasto.objects.get(owner=user, nome='Debito Automático')
+            tipo = TipoGasto.objects.get(
+                owner=user, nome_tipo='Debito Automático')
 
         if not categoria_exist:
             categoria = Categoria.objects.create(
-                owner=user, nome='Contas Básicas'
+                owner=user, nome_categoria='Contas Básicas'
             )
         else:
             categoria = Categoria.objects.get(
-                owner=user, nome='Contas Básicas'
+                owner=user, nome_categoria='Contas Básicas'
             )
 
         mes = 1
@@ -174,26 +175,27 @@ class GastosFake:
         user = User.objects.get(username=self.username)
         tipo_exist = TipoGasto.objects.filter(
             owner=user,
-            nome='Debito Automático'
+            nome_tipo='Debito Automático'
         ).exists()
         categoria_exist = Categoria.objects.filter(
             owner=user,
-            nome='Contas Básicas'
+            nome_categoria='Contas Básicas'
         ).exists()
 
         if not tipo_exist:
             tipo = TipoGasto.objects.create(
-                owner=user, nome='Debito Automático')
+                owner=user, nome_tipo='Debito Automático')
         else:
-            tipo = TipoGasto.objects.get(owner=user, nome='Debito Automático')
+            tipo = TipoGasto.objects.get(
+                owner=user, nome_tipo='Debito Automático')
 
         if not categoria_exist:
             categoria = Categoria.objects.create(
-                owner=user, nome='Contas Básicas'
+                owner=user, nome_categoria='Contas Básicas'
             )
         else:
             categoria = Categoria.objects.get(
-                owner=user, nome='Contas Básicas'
+                owner=user, nome_categoria='Contas Básicas'
             )
 
         mes = 1
@@ -214,26 +216,27 @@ class GastosFake:
         user = User.objects.get(username=self.username)
         tipo_exist = TipoGasto.objects.filter(
             owner=user,
-            nome='Debito Automático'
+            nome_tipo='Debito Automático'
         ).exists()
         categoria_exist = Categoria.objects.filter(
             owner=user,
-            nome='Contas Básicas'
+            nome_categoria='Contas Básicas'
         ).exists()
 
         if not tipo_exist:
             tipo = TipoGasto.objects.create(
-                owner=user, nome='Debito Automático')
+                owner=user, nome_tipo='Debito Automático')
         else:
-            tipo = TipoGasto.objects.get(owner=user, nome='Debito Automático')
+            tipo = TipoGasto.objects.get(
+                owner=user, nome_tipo='Debito Automático')
 
         if not categoria_exist:
             categoria = Categoria.objects.create(
-                owner=user, nome='Contas Básicas'
+                owner=user, nome_categoria='Contas Básicas'
             )
         else:
             categoria = Categoria.objects.get(
-                owner=user, nome='Contas Básicas'
+                owner=user, nome_categoria='Contas Básicas'
             )
         mes = 1
         for i in range(12):
@@ -263,25 +266,25 @@ class GastosFake:
         user = User.objects.get(username=self.username)
         tipo_exist = TipoGasto.objects.filter(
             owner=user,
-            nome=tipo_nome
+            nome_tipo=tipo_nome
         ).exists()
         categoria_exist = Categoria.objects.filter(
             owner=user,
-            nome=categoria_nome
+            nome_categoria=categoria_nome
         ).exists()
 
         if not tipo_exist:
-            tipo = TipoGasto.objects.create(owner=user, nome=tipo_nome)
+            tipo = TipoGasto.objects.create(owner=user, nome_tipo=tipo_nome)
         else:
-            tipo = TipoGasto.objects.get(owner=user, nome=tipo_nome)
+            tipo = TipoGasto.objects.get(owner=user, nome_tipo=tipo_nome)
 
         if not categoria_exist:
             categoria = Categoria.objects.create(
-                owner=user, nome=categoria_nome
+                owner=user, nome_categoria=categoria_nome
             )
         else:
             categoria = Categoria.objects.get(
-                owner=user, nome=categoria_nome
+                owner=user, nome_categoria=categoria_nome
             )
 
         if por_mes:
