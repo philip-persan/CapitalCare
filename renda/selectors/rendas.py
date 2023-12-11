@@ -32,8 +32,7 @@ def get_aggregations_rendas(rendas: QuerySet[Renda]) -> Dict:
     return values
 
 
-def get_annotations_rendas(request):
-    rendas = get_rendas_by_user(request)
+def get_annotations_rendas(rendas):
 
     rendas_por_tipo = rendas.values(
         'tipo__nome'

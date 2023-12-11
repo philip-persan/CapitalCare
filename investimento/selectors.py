@@ -40,8 +40,7 @@ def get_aggregations_investimentos(investimentos: QuerySet[Investimento]) -> Dic
     return values
 
 
-def get_annotations_investimentos(request):
-    investimentos = get_investimentos_by_user(request)
+def get_annotations_investimentos(investimentos):
 
     investimentos_por_tipo = investimentos.values(
         'tipo__nome'

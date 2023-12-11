@@ -4,7 +4,7 @@
 {% block content %}
 <section class="content">
     <div class="content_header">
-        <h1 class="title_hero">Visão geral - Mês Atual</h1>
+        <h1 class="title_hero">Visão geral - {{ mes }}/{{ ano }}</h1>
         {% include "global/partials/messages.html" %}
     </div>
     <div class="cards">
@@ -96,7 +96,7 @@
             </table>
         </div>
     </div>
-    <a href="{% url "dashboard:visao_geral_prox_mes" %}">Próximo Mês</a>
+    <a href="{% url "dashboard:visao_geral" %}">Mês Atual</a>
 </section>
 {% endblock content %}
 {% block scripts %}
