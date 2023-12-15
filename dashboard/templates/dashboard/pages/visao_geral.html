@@ -2,101 +2,106 @@
 {% load static %}
 {% block title %}Visão Geral{% endblock title %}
 {% block content %}
-<section class="content">
+<section class="content_vg">
     <div class="content_header">
         <h1 class="title_hero">Visão geral - Mês Atual</h1>
         {% include "global/partials/messages.html" %}
     </div>
-    <div class="cards">
-        <div class="card rendas">
-            <h3>Rendas</h3>
-            <span><i class="bi bi-cash-stack"></i> R$ {{ total_rendas.total }}</span>
+    <div class="gp-content">
+        <div class="cards">
+            <div class="card rendas">
+                <h3>Rendas</h3>
+                <span><i class="bi bi-cash-stack"></i> R$ {{ total_rendas.total }}</span>
+            </div>
+            <div class="card investimentos">
+                <h3>Investimentos</h3>
+                <span><i class="bi bi-graph-up"></i> R$ {{ total_investimentos.total }}</span>
+            </div>
+            <div class="card gastos">
+                <h3>Gastos</h3>
+                <span><i class="bi bi-credit-card-fill"></i> R$ {{ total_gastos.total }}</span>
+            </div>
+            <div class="card sem-track">
+                <h3>Sem Lançamento</h3>
+                <span><i class="bi bi-question-circle-fill"></i> R$ {{ sem_lancamento }}</span>
+            </div>
         </div>
-        <div class="card investimentos">
-            <h3>Investimentos</h3>
-            <span><i class="bi bi-graph-up"></i> R$ {{ total_investimentos.total }}</span>
-        </div>
-        <div class="card gastos">
-            <h3>Gastos</h3>
-            <span><i class="bi bi-credit-card-fill"></i> R$ {{ total_gastos.total }}</span>
-        </div>
-        <div class="card sem-track">
-            <h3>Sem Lançamento</h3>
-            <span><i class="bi bi-question-circle-fill"></i> R$ {{ sem_lancamento }}</span>
+        <div class="vg-anno">
+            <div class="annotations">
+                <h2 class="table_title">Total de Rendas por Tipo</h2>
+                <table class="">
+                    <thead>
+                        <tr>
+                            <th>Tipo</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for tipo in annotations_rendas %}
+                            <tr>
+                                <td>{{ tipo.tipo__nome }}</td>
+                                <td>R$ {{ tipo.total_por_tipo }}</td>
+                            </tr>
+                        {% endfor %}
+                        <tr>
+                            <td>Total</td>
+                            <td>R$ {{ total_rendas.total }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="annotations">
+                <h2 class="table_title">Total de Investimentos por Tipo</h2>
+                <table class="">
+                    <thead>
+                        <tr>
+                            <th>Tipo</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for tipo in annotations_invest.por_tipo %}
+                            <tr>
+                                <td>{{ tipo.tipo__nome }}</td>
+                                <td>R$ {{ tipo.total_por_tipo }}</td>
+                            </tr>
+                        {% endfor %}
+                        <tr>
+                            <td>Total</td>
+                            <td>R$ {{ total_investimentos.total }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="annotations">
+                <h2 class="table_title">Total de Gastos por Tipo</h2>
+                <table class="">
+                    <thead>
+                        <tr>
+                            <th>Tipo</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for descricao in annotations_gastos.por_descricao %}
+                            <tr>
+                                <td>{{ descricao.descricao }}</td>
+                                <td>R$ {{ descricao.total_por_descricao }}</td>
+                            </tr>
+                        {% endfor %}
+                        <tr>
+                            <td>Total</td>
+                            <td>R$ {{ total_gastos.total }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-    <div class="charts">
-        <div class="annotations">
-            <h2 class="table_title">Total de Rendas por Tipo</h2>
-            <table class="">
-                <thead>
-                    <tr>
-                        <th>Tipo</th>
-                        <th>Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for tipo in annotations_rendas %}
-                        <tr>
-                            <td>{{ tipo.tipo__nome }}</td>
-                            <td>R$ {{ tipo.total_por_tipo }}</td>
-                        </tr>
-                    {% endfor %}
-                    <tr>
-                        <td>Total</td>
-                        <td>R$ {{ total_rendas.total }}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="annotations">
-            <h2 class="table_title">Total de Investimentos por Tipo</h2>
-            <table class="">
-                <thead>
-                    <tr>
-                        <th>Tipo</th>
-                        <th>Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for tipo in annotations_invest.por_tipo %}
-                        <tr>
-                            <td>{{ tipo.tipo__nome }}</td>
-                            <td>R$ {{ tipo.total_por_tipo }}</td>
-                        </tr>
-                    {% endfor %}
-                    <tr>
-                        <td>Total</td>
-                        <td>R$ {{ total_investimentos.total }}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="annotations">
-            <h2 class="table_title">Total de Gastos por Tipo</h2>
-            <table class="">
-                <thead>
-                    <tr>
-                        <th>Tipo</th>
-                        <th>Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for descricao in annotations_gastos.por_descricao %}
-                        <tr>
-                            <td>{{ descricao.descricao }}</td>
-                            <td>R$ {{ descricao.total_por_descricao }}</td>
-                        </tr>
-                    {% endfor %}
-                    <tr>
-                        <td>Total</td>
-                        <td>R$ {{ total_gastos.total }}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+    <div class="vg-bt-links">
+        <a class="animated-link-black" href="{% url "dashboard:visao_geral" %}">Mês Atual</a>
+        <a class="animated-link-black" href="{% url "dashboard:visao_geral_prox_mes" %}">Próximo Mês</a>
     </div>
-    <a href="{% url "dashboard:visao_geral_prox_mes" %}">Próximo Mês</a>
 </section>
 {% endblock content %}
 {% block scripts %}
